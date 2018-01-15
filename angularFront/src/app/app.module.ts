@@ -18,7 +18,9 @@ import { LinkComponent } from './link/link.component';
 import {DataMicrosoftService} from './services/data-microsoft/data-microsoft.service';
 import {DataOracleService} from './services/data-oracle/data-oracle.service';
 import { FilterPipeModule } from 'ngx-filter-pipe';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from '@angular/common/http';
+import { ChartsModule } from 'ng2-charts';
+import { LineChartComponent } from './line-chart/line-chart.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -27,6 +29,7 @@ const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'no-access', component: NoAccessComponent},
   //{path: 'notfound', component: NotFoundComponent}
+  {path: 'charts', component: LineChartComponent}
 ];
 
 @NgModule({
@@ -38,7 +41,8 @@ const appRoutes: Routes = [
     NotFoundComponent,
     NoAccessComponent,
     HeaderComponent,
-    LinkComponent
+    LinkComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +50,7 @@ const appRoutes: Routes = [
     FilterPipeModule,
     HttpModule,
     HttpClientModule,
+    ChartsModule,
     RouterModule.forRoot( appRoutes)
   ],
   providers: [

@@ -12,5 +12,6 @@ export const ROUTES: RouteInfo[] = [
   { path: '', title: 'Home', menuType: MenuType.LEFT},
   { path: 'link', title: 'Liaison Opportunité/Affaire', menuType: MenuType.LEFT },
   //{ path: 'notfound', title: 'notfound', menuType: MenuType.LEFT },
+  { path: 'charts', title: 'Charts', menuType: MenuType.LEFT}
 ];
 
