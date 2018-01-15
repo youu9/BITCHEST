@@ -11,6 +11,6 @@ class QuotationsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        
     }
 }

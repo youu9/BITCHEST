@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class SpendsTableSeeder extends Seeder
+class TransactionsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class SpendsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        
     }
 }
