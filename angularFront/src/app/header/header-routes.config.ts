@@ -8,7 +8,7 @@ import {MenuType, RouteInfo} from './header.metadata';
  *  */
 
 export const ROUTES: RouteInfo[] = [
-  { path: '', title: 'BITCHEST', menuType: MenuType.BRAND },
+  { path: '', title: 'BITCHEz', menuType: MenuType.BRAND },
   { path: '', title: 'Home', menuType: MenuType.LEFT},
   { path: 'link', title: 'Liaison Opportunité/Affaire', menuType: MenuType.LEFT },
   //{ path: 'notfound', title: 'notfound', menuType: MenuType.LEFT },
