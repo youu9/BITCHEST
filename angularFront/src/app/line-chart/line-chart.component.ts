@@ -9,10 +9,10 @@ export class LineChartComponent {
 
   // lineChart
   public lineChartData:Array<any> = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Bitcoin'},
-    {data: [1, 6, 7, 8, 7, 6, 4], label: 'Ethereum'},
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Ripple'},
-    {data: [18, 48, 77, 9, 100, 27, 40], label: 'Bitcoin Cash'},
+    {data: [65, 59, 80, 81, 56, 55, 40,84, 80, 70], label: 'Bitcoin'},
+    {data: [1, 6, 7, 8, 7, 6, 4, 10, 12, 16], label: 'Ethereum'},
+    {data: [65, 59, 80, 81, 56, 55, 40, 44, 77, 88], label: 'Ripple'},
+    {data: [18, 48, 77, 9, 100, 27, 40, 55 , 40 ,35 ], label: 'Bitcoin Cash'},
     {data: [65, 59, 80, 81, 56, 55, 40], label: 'Cardano'},
     {data: [65, 59, 80, 81, 56, 55, 40], label: 'Litecoin'},
     {data: [65, 59, 80, 81, 56, 55, 40], label: 'NEM'},
