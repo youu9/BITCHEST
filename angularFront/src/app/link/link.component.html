@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>liaisonOppAff</title>
+</head>
+<body>
+
+<!-- Page Content -->
+<!-- tableau Opportunités -->
+
+<!-- New tryyy -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>
+            Table Opportunités
+          </h4>
+        </div>
+        <table id="myTableOpp" class="table table-hover table-condensed table-bordered table-fixedheader">
+          <thead>
+          <tr>
+            <th class="col-xs-3"><a>CLI_IDENT_SF</a>
+
+            </th>
+            <th class="col-xs-3">
+              <a >OPPO_IDENTIF</a>
+            </th>
+
+            <th class="col-xs-6">
+              <a>OPPO_NAME</a>
+            </th>
+          </tr>
+          </thead>
+          <tbody style="height:400px">
+         <tr *ngFor="let opportunite of opportunites">
+            <td class="col-xs-3">{{opportunite.cliIdentSf}}</td>
+            <td class="col-xs-3">{{opportunite.oppoIdentif}}</td>
+            <td class="col-xs-6">{{opportunite.oppoName}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4>
+        Table Affaires
+      </h4>
+    </div>
+    <table id="myTableAff" class="table table-hover table-condensed table-bordered table-fixedheader table-responsive" >
+      <thead>
+      <tr>
+        <th class="col-xs-2">
+          <a>CD_CLIENT</a>
+
+        </th>
+        <th class="col-xs-2">
+          <a >CD_AFFAIRE</a>
+        </th>
+        <th class="col-xs-8">
+          <a>NOM_AFFAIRE</a>
+        </th>
+      </tr>
+
+      </thead>
+      <tbody style="height: 400px">
+      <tr *ngFor="let affaire of affaires">
+        <td class="col-xs-2">{{affaire.cdClient}}</td>
+        <td class="col-xs-2">{{affaire.cdAffaire}}</td>
+        <td class="col-xs-8">{{affaire.nomAffaire}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
