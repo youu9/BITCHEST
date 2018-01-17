@@ -23,8 +23,12 @@ import { ChartsModule } from 'ng2-charts';
 import { LineChartComponent } from './line-chart/line-chart.component';
 
 const appRoutes: Routes = [
-  {path: '', component: HomeComponent, canActivate: [AuthGuard]},
-  {path: 'admin', component: AdminComponent, canActivate: [AuthGuard, AdminAuthGuard]},
+  {path: '', component: HomeComponent,
+    //canActivate: [AuthGuard]
+  },
+  {path: 'admin', component: AdminComponent,
+  //  canActivate: [AuthGuard, AdminAuthGuard]
+  },
   {path: 'link', component: LinkComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'no-access', component: NoAccessComponent},
