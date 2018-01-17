@@ -36,14 +36,14 @@ class StoreUserRequest extends FormRequest
         ];
     }
 
-    public function messages(){
-        return[
-            'name.required' => 'name is required',
-            'email.required' => 'Email is required',
-            'email.unique' => 'already taken',
-            'password.required' => 'wrong password',
-        ];
-    }
+    // public function messages(){
+    //     return[
+    //         'name.required' => 'name is required',
+    //         'email.required' => 'Email is required',
+    //         'email.unique:users' => 'already taken',
+    //         'password.required' => 'wrong password',
+    //     ];
+    // }
 
     // /**
     //  * @param array $data
@@ -57,13 +57,15 @@ class StoreUserRequest extends FormRequest
     //     return $validator->errors()->toArray();
     // }
 
-    public function withValidator($validator)
-    {
-        $validator->after(function ($validator) {
-            if ($this->somethingElseIsInvalid()) {
-                $validator->errors()->add('field', 'Something is wrong with this field!');
-            }
-        });
-    }
+    // public function withValidator($validator)
+    // {
+    //     $validator->after(function ($validator) {
+    //        if($validator->fails()){
+    //             $error = $validator->messages()->toJson();
+    //             return response()->json(['success'=> false, 'error'=> $error]);
+    //         }
+    //     });
+    //    // return $validator;
+    // }
 
 }
