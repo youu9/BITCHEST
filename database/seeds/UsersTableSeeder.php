@@ -17,7 +17,9 @@ class UsersTableSeeder extends Seeder
             'name' => 'Jerome',
             'password' => Hash::make('root'),
             'email' => 'jerome@bitchest.com',
-            'role' => 'Admin'
+            'role' => 'Admin',
+            'is_verified' => 1,
+            'remember_token' => str_random(30),
         ]);
     }
 }
