@@ -27,8 +27,20 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
+
+        $validator = Validator::make($request->all(), $this->rules);
+        if ($validator->fails()) {
+        //pass validator errors as errors object for ajax response
+
+            return response()->json(['errors'=>$validator->errors()]);
+        }
+        // $validator = Validator::make($request->all(), [
+        //     'name' => 'required|max:255',
+        //     'email' => 'required|email|max:255|unique:users',
+        //     'password' => 'required|confirmed',
+        // ]);
         // $rules = [
         //     'name' => 'required|max:255',
         //     'email' => 'required|email|max:255|unique:users',
@@ -55,7 +67,7 @@ class UserController extends Controller
         $verification_code = str_random(30); //Generate verification code
         $user = User::create(['name' => $name, 'email' => $email, 'password' => Hash::make($password), 'remember_token' => $verification_code, 'is_verified' => 1]);
         
-        return response()->json(['success'=> true, 'message'=> 'Utilisateur ajouté !']);
+        return response()->json(['success'=> true, 'message'=> 'Utilisateur ajouté !'])->header('Content-Type', 'application/json');
     }
 
     /**

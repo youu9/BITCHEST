@@ -131,7 +131,7 @@ class AuthController extends Controller
         }
 
         // all good so return the token
-        return response()->json(['success' => true, 'data'=> [ 'token' => $token ]]);
+        return response()->json(['success' => true])->header('Authorization','Bearer: '.$token);
     }
 
     /**
