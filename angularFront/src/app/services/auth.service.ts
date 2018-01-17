@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class AuthService {
@@ -20,7 +21,7 @@ export class AuthService {
   }
 
   login(credentials) {
-    return this.http.post('/api/login', JSON.stringify(credentials))
+    return this.http.post(environment.login, JSON.stringify(credentials))
       .map( r => {
         let result = r.headers.toJSON();
         if ( result && result.authorization) {

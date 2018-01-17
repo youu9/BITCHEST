@@ -5,6 +5,10 @@
 
 export const environment = {
   production: false,
+
+  login: '/api/login',
+
+
   //MicrosoftSql
   opportunity: '/api/sql/opportunity',
 
