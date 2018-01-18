@@ -6,7 +6,8 @@
 export const environment = {
   production: false,
 
-  login: '/api/login',
+  //login: 'http://localhost:8000/api/v1/login',
+  login: '/bitchest/v1/login',
 
 
   //MicrosoftSql
