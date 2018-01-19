@@ -1,0 +1,102 @@
+
+<div class="container">
+  <ul class="nav nav-pills">
+    <li class="active"><a data-toggle="pill" href="#myTable">Users list</a></li>
+    <li><a data-toggle="pill" href="#currency">Currency</a></li>
+  </ul>
+  <div class="tab-content">
+    <div id="myTable" class="tab-pane fade in active">
+      <h3>User List</h3>
+      <table id="myTableUser" class="table table-hover table-condensed table-bordered table-fixedheader">
+        <thead>
+        <tr>
+          <th class="col-xs-3"><a>email</a>
+
+          </th>
+          <th class="col-xs-3">
+            <a >name</a>
+          </th>
+
+          <th class="col-xs-6">
+            <a>role</a>
+          </th>
+
+          <th class="col-xs-6">
+            <a></a>
+          </th>
+        </tr>
+        </thead>
+        <tbody style="height:400px">
+        <tr *ngFor="let user of users">
+          <td class="col-xs-3">{{user.email}}</td>
+          <td class="col-xs-3">{{user.name}}</td>
+          <td class="col-xs-6">{{user.role}}</td>
+          <button  routerLink="/user-form" (click)="getUser(user.id)" class="float-right btn btn-light btn-sm">Modifier</button>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="currency" class="tab-pane fade">
+      <h3>Currency</h3>
+      <table id="myTableCurrency" class="table table-hover table-condensed table-bordered table-fixedheader">
+        <thead>
+        <tr>
+          <th class="col-xs-3"><a>Name</a>
+
+          </th>
+          <th class="col-xs-3">
+            <a >Symbol</a>
+          </th>
+
+          <th class="col-xs-6">
+            <a>Price</a>
+          </th>
+        </tr>
+        </thead>
+        <tbody style="height:400px">
+        <tr *ngFor="let currency of currencies">
+          <td class="col-xs-3">{{currency.name}}</td>
+          <td class="col-xs-3">{{currency.symbol}}</td>
+          <td class="col-xs-6">{{currency.today_quotation.rate}} €</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <form #f="ngForm" (ngSubmit)="save(f.value)">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input name="name" id="name" type="text" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <div class="input-group">
+            <input name="email" id="email" type="email" class="form-control" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="role">Role</label>
+          <select name="role" id="role" class="form-control" required>
+            <option value=""></option>
+            <option>
+              admin
+            </option>
+            <option>
+              user
+            </option>
+          </select>
+        </div>
+        <button class="btn btn-primary">Save</button>
+        <button class="btn btn-danger">Delete</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+

@@ -5,6 +5,11 @@
 
 export const environment = {
   production: false,
+
+  //login: 'http://localhost:8000/api/v1/login',
+  login: '/bitchest/v1/login',
+
+
   //MicrosoftSql
   opportunity: '/api/sql/opportunity',
 

@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   public brandMenu: any;
   isCollapsed = true;
 
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND);
