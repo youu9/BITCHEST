@@ -40,8 +40,8 @@ export class UsersService {
       .map(response => response.json());
   }
 
-  getCurrency() {
-    return this.http.get( 'bitchest/v1/currencies')
+  getCurrencies() {
+    return this.http.get( 'bitchest/v1/currencies', this.option)
       .map(response => response.json());
   }
 }

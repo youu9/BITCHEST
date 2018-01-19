@@ -37,23 +37,23 @@
       <table id="myTableCurrency" class="table table-hover table-condensed table-bordered table-fixedheader">
         <thead>
         <tr>
-          <th class="col-xs-3"><a>email</a>
+          <th class="col-xs-3"><a>Name</a>
 
           </th>
           <th class="col-xs-3">
-            <a >name</a>
+            <a >Symbol</a>
           </th>
 
           <th class="col-xs-6">
-            <a>role</a>
+            <a>Price</a>
           </th>
         </tr>
         </thead>
         <tbody style="height:400px">
-        <tr *ngFor="let user of users">
-          <td class="col-xs-3">{{user.email}}</td>
-          <td class="col-xs-3">{{user.name}}</td>
-          <td class="col-xs-6">{{user.role}}</td>
+        <tr *ngFor="let currency of currencies">
+          <td class="col-xs-3">{{currency.data.name}}</td>
+          <td class="col-xs-3">{{currency.data.symbol}}</td>
+          <td class="col-xs-6">{{currency.data.today_quotation.rate}} €</td>
         </tr>
         </tbody>
       </table>

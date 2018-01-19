@@ -8,7 +8,7 @@ import {UsersService} from "../../services/users/users.service";
 })
 export class UsersComponent implements OnInit {
 users: any [];
-currency: any [];
+currencies: any [];
 
   constructor(private userService: UsersService) { }
 
@@ -16,8 +16,8 @@ currency: any [];
     this.userService.getUsers()
       .subscribe(users => this.users = users);
 
-    this.userService.getCurrency()
-      .subscribe( currency => this.currency = currency);
+    this.userService.getCurrencies()
+      .subscribe( currencies => this.currencies = currencies);
   }
 
 }
