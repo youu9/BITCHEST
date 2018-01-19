@@ -36,7 +36,12 @@ export class UsersService {
    * @version 1.0
    */
   getUsers() {
-    return this.http.get('http://localhost:8000/api/v1/user', this.option)
+    return this.http.get('bitchest/v1/users', this.option)
+      .map(response => response.json());
+  }
+
+  getCurrency() {
+    return this.http.get( 'bitchest/v1/currencies')
       .map(response => response.json());
   }
 }

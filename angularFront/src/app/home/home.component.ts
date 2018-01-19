@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../services/auth.service';
+import {JwtHelper} from "angular2-jwt";
 
 @Component({
   selector: 'app-home',
@@ -15,9 +16,11 @@ export class HomeComponent implements OnInit {
    * @see AuthService
    *@author Younes CHBADA
    *@version 1.0*/
-  constructor(private auth: AuthService) { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
+
+   console.log(new JwtHelper().decodeToken(localStorage.getItem('token')))
   }
 
 }

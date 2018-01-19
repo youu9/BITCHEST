@@ -22,7 +22,7 @@ export class AuthService {
 
   login(credentials) {
     console.log(credentials);
-    return this.http.post('http://localhost:8000/api/v1/login',credentials)
+    return this.http.post(environment.login, credentials)
       .map( r => {
         console.log(r.headers);
         let result = r.headers.toJSON();

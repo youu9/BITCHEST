@@ -8,12 +8,16 @@ import {UsersService} from "../../services/users/users.service";
 })
 export class UsersComponent implements OnInit {
 users: any [];
+currency: any [];
 
   constructor(private userService: UsersService) { }
 
   ngOnInit() {
     this.userService.getUsers()
       .subscribe(users => this.users = users);
+
+    this.userService.getCurrency()
+      .subscribe( currency => this.currency = currency);
   }
 
 }
