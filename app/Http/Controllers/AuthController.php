@@ -8,6 +8,7 @@ use Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Http\Requests\AuthRequest;
 use App\Http\Requests\RegisterRequest;
+use Illuminate\Support\Facades\Auth;
 
 
 /**
@@ -129,9 +130,9 @@ class AuthController extends Controller
             // something went wrong whilst attempting to encode the token
             return response()->json(['success' => false, 'error' => 'could_not_create_token'], 500);
         }
-
+        $user = Auth::user();
         // all good so return the token
-        return response()->json(['success' => true])->header('Authorization','Bearer '.$token)->header('Access-Control-Expose-Headers', 'Authorization');
+        return response()->json(['success' => true, 'user' => $user])->header('Authorization','Bearer '.$token)->header('Access-Control-Expose-Headers', 'Authorization');
     }
 
     /**
