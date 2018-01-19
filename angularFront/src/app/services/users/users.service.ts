@@ -44,4 +44,9 @@ export class UsersService {
     return this.http.get( 'bitchest/v1/currencies', this.option)
       .map(response => response.json());
   }
+
+  getUser(id) {
+    return this.http.get('bitchest/v1/user/' + id, this.option)
+      .map(response => response.json());
+  }
 }

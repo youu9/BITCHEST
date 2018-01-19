@@ -31,7 +31,7 @@
           <td class="col-xs-3">{{user.email}}</td>
           <td class="col-xs-3">{{user.name}}</td>
           <td class="col-xs-6">{{user.role}}</td>
-          <button  class="float-right btn btn-light btn-sm">Modifier</button>
+          <button  routerLink="/user-form" (click)="getUser(user.id)" class="float-right btn btn-light btn-sm">Modifier</button>
         </tr>
         </tbody>
       </table>
@@ -64,4 +64,39 @@
     </div>
   </div>
 </div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <form #f="ngForm" (ngSubmit)="save(f.value)">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input name="name" id="name" type="text" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <div class="input-group">
+            <input name="email" id="email" type="email" class="form-control" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="role">Role</label>
+          <select name="role" id="role" class="form-control" required>
+            <option value=""></option>
+            <option>
+              admin
+            </option>
+            <option>
+              user
+            </option>
+          </select>
+        </div>
+        <button class="btn btn-primary">Save</button>
+        <button class="btn btn-danger">Delete</button>
+      </form>
+    </div>
+  </div>
+</div>
+
 

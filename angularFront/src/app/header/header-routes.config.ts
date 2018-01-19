@@ -12,6 +12,6 @@ export const ROUTES: RouteInfo[] = [
   { path: '', title: 'Home', menuType: MenuType.LEFT},
   //{ path: 'notfound', title: 'notfound', menuType: MenuType.LEFT },
   { path: 'admin', title: 'admin', menuType: MenuType.LEFT },
-  { path: 'dashboard', title: 'Dashboard', menuType: MenuType.LEFT}
+  { path: 'dashboard', title: 'Dashboard', menuType: MenuType.LEFT},
 ];
 
