@@ -16,7 +16,7 @@ class CurrencyController extends Controller
         foreach($currencies as $currency){
             $currency->today_quotation = $currency->quotation($date->format('Y-m-d'));
         }
-        return response()->json(['success' => 'true', 'data' => $currencies]);
+        return response()->json($currencies);
     }
 
     public function show($id){
