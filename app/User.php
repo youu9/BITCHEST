@@ -40,7 +40,7 @@ class User extends Authenticatable implements JWTSubject
         ->join('quotations', 'quotations.id', '=', 'transactions.quotation_id')
         ->join('currencies', 'currencies.id', '=', 'transactions.currency_id')
         ->join('users', 'users.id', '=', 'transactions.user_id')
-        ->select('currencies.id as id','currencies.name as name', 'transactions.date as date', 'transactions.quantity as quantity', 'quotations.rate as price')
+        ->select('currencies.id as id','currencies.name as name', 'currencies.symbol as symbol', 'transactions.quantity as quantity', 'quotations.rate as price')
         ->where('users.id', '=', $id)
         ->where('transactions.state', '=', 'own')
         ->get();

@@ -37,8 +37,9 @@ Route::group(['prefix' => 'v1','middleware' => ['jwt.auth']], function() {
     // Route::post('/user/{id}/wallet/{id}', "TransactionController@sell"); // Vendre ?
     // Route::post('/user/{id}/currency/{id}', "TransactionController@buy"); // Achat ?
 
-    // Wallet of client ex2
+    // Client
     Route::get('/wallet/', "TransactionController@wallet"); // porte feuille ?
+    Route::get('/currency/{id}/transactions', "TransactionController@list"); // 
     Route::post('/sell/transaction/{id}', "TransactionController@sell"); // Vendre ?
     Route::post('/buy/', "TransactionController@buy"); // Achat ?
     

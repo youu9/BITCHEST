@@ -13,6 +13,14 @@ class TransactionController extends Controller
         return response()->json(['success'=> true, 'wallet'=> $user->getWallet($user->id)]);
     }
 
+    public function list($id){
+        $user = JWTAuth::parseToken()->authenticate();
+
+        $transactions = $user->transactions;
+
+        return response()->json( $transactions );
+    }
+
     public function sell(Request $request, $id){
         $transaction = Transaction::findOrFail($id);
         if($transaction->state != 'sold'){
