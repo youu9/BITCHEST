@@ -20,6 +20,7 @@ import { ChartsModule } from 'ng2-charts';
 import { LineChartComponent } from './line-chart/line-chart.component';
 import { UsersComponent } from './admin/users/users.component';
 import {UsersService} from './services/users/users.service';
+import { UserFormComponent } from './admin/user-form/user-form.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent,
@@ -49,6 +50,7 @@ const appRoutes: Routes = [
     HeaderComponent,
     LineChartComponent,
     UsersComponent,
+    UserFormComponent,
   ],
   imports: [
     BrowserModule,

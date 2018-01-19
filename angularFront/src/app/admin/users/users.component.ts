@@ -20,4 +20,6 @@ currencies: any [];
       .subscribe( currencies => this.currencies = currencies);
   }
 
+
+
 }

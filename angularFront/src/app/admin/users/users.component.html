@@ -4,7 +4,6 @@
     <li class="active"><a data-toggle="pill" href="#myTable">Users list</a></li>
     <li><a data-toggle="pill" href="#currency">Currency</a></li>
   </ul>
-
   <div class="tab-content">
     <div id="myTable" class="tab-pane fade in active">
       <h3>User List</h3>
@@ -21,6 +20,10 @@
           <th class="col-xs-6">
             <a>role</a>
           </th>
+
+          <th class="col-xs-6">
+            <a></a>
+          </th>
         </tr>
         </thead>
         <tbody style="height:400px">
@@ -28,6 +31,7 @@
           <td class="col-xs-3">{{user.email}}</td>
           <td class="col-xs-3">{{user.name}}</td>
           <td class="col-xs-6">{{user.role}}</td>
+          <button  class="float-right btn btn-light btn-sm">Modifier</button>
         </tr>
         </tbody>
       </table>
@@ -51,9 +55,9 @@
         </thead>
         <tbody style="height:400px">
         <tr *ngFor="let currency of currencies">
-          <td class="col-xs-3">{{currency.data.name}}</td>
-          <td class="col-xs-3">{{currency.data.symbol}}</td>
-          <td class="col-xs-6">{{currency.data.today_quotation.rate}} €</td>
+          <td class="col-xs-3">{{currency.name}}</td>
+          <td class="col-xs-3">{{currency.symbol}}</td>
+          <td class="col-xs-6">{{currency.today_quotation.rate}} €</td>
         </tr>
         </tbody>
       </table>
