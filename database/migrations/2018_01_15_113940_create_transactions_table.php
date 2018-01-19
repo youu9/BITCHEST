@@ -17,10 +17,13 @@ class CreateTransactionsTable extends Migration
             $table->increments('id');
             $table->integer('quantity');
             $table->date('date');
+            $table->enum('state', ['sold', 'own'])->default('own');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
             $table->integer('currency_id')->unsigned()->nullable();
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('SET NULL');
+            $table->integer('quotation_id')->unsigned()->nullable();
+            $table->foreign('quotation_id')->references('id')->on('quotations')->onDelete('SET NULL');
             $table->timestamps();
         });
     }

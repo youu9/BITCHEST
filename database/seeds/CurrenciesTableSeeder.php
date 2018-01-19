@@ -88,7 +88,7 @@ class CurrenciesTableSeeder extends Seeder
                 $quotation->currency_id = $c->id;
                
                 $quotation->rate = $i == 0 ? $firstCotation : getCotationFor($c->name) + $firstCotation;
-
+                
                 $date = new Carbon();
                 $date->addDays(-$i);
 
