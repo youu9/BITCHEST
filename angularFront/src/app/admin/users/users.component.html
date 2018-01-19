@@ -1,3 +1,23 @@
-<p>
-  users works!
-</p>
+<table id="myTableOpp" class="table table-hover table-condensed table-bordered table-fixedheader">
+  <thead>
+  <tr>
+    <th class="col-xs-3"><a>email</a>
+
+    </th>
+    <th class="col-xs-3">
+      <a >name</a>
+    </th>
+
+    <th class="col-xs-6">
+      <a>role</a>
+    </th>
+  </tr>
+  </thead>
+  <tbody style="height:400px">
+  <tr *ngFor="let user of users">
+    <td class="col-xs-3">{{user.id}}</td>
+    <td class="col-xs-3">{{user.name}}</td>
+    <td class="col-xs-6">{{user.role}}</td>
+  </tr>
+  </tbody>
+</table>
