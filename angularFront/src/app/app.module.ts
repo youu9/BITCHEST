@@ -21,13 +21,16 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
 import {HttpClientModule} from '@angular/common/http';
 import { ChartsModule } from 'ng2-charts';
 import { LineChartComponent } from './line-chart/line-chart.component';
+import { UsersComponent } from './admin/users/users.component';
+import {UsersService} from './services/users/users.service';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent,
-    //canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {path: 'admin', component: AdminComponent,
-  //  canActivate: [AuthGuard, AdminAuthGuard]
+    canActivate: [AuthGuard,// AdminAuthGuard
+    ]
   },
   {path: 'link', component: LinkComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
@@ -46,7 +49,8 @@ const appRoutes: Routes = [
     NoAccessComponent,
     HeaderComponent,
     LinkComponent,
-    LineChartComponent
+    LineChartComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +64,7 @@ const appRoutes: Routes = [
   providers: [
     AuthGuard,
     AuthService,
+    UsersService,
     AdminAuthGuard,
     DataMicrosoftService,
     DataOracleService
