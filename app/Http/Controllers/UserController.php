@@ -7,6 +7,7 @@ use App\Http\Resources\UserResource;
 use App\User;
 use Validator;
 use Hash;
+use Illuminate\Validation\Rule;
 use App\Http\Requests\StoreUserRequest;
 
 class UserController extends Controller
@@ -29,37 +30,25 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
+        $rules = [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|confirmed',
+        ];
 
-        $validator = Validator::make($request->all(), $this->rules);
-        if ($validator->fails()) {
-        //pass validator errors as errors object for ajax response
+        $input = $request->only(
+            'name',
+            'email',
+            'password',
+            'password_confirmation'
+        );
 
-            return response()->json(['errors'=>$validator->errors()]);
+        $validator = Validator::make($input, $rules);
+
+        if($validator->fails()) {
+            $error = $validator->messages()->toJson();
+            return response()->json(['success'=> false, 'error'=> $error]);
         }
-        // $validator = Validator::make($request->all(), [
-        //     'name' => 'required|max:255',
-        //     'email' => 'required|email|max:255|unique:users',
-        //     'password' => 'required|confirmed',
-        // ]);
-        // $rules = [
-        //     'name' => 'required|max:255',
-        //     'email' => 'required|email|max:255|unique:users',
-        //     'password' => 'required|confirmed',
-        // ];
-
-        // $input = $request->only(
-        //     'name',
-        //     'email',
-        //     'password',
-        //     'password_confirmation'
-        // );
-
-        // $validator = Validator::make($input, $rules);
-
-        // if($validator->fails()) {
-        //     $error = $validator->messages()->toJson();
-        //     return response()->json(['success'=> false, 'error'=> $error]);
-        // }
 
         $name = $request->name;
         $email = $request->email;
@@ -99,9 +88,41 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUserRequest $request, $id)
     {
-        //
+        
+        $user = User::find($id);
+        $rules = [
+            'name' => 'required|max:255',
+            'email' => [
+                'required',
+                 Rule::unique('users')->ignore($user->id),
+                 'email'
+            ],
+            'role' => 'in:Admin,Client',
+            'password' => 'confirmed',
+            
+        ];
+
+        $input = $request->only(
+            'name',
+            'email',
+            'role',
+            'password',
+            'password_confirmation'
+        );
+
+        $validator = Validator::make($input, $rules);
+
+        if($validator->fails()) {
+            $error = $validator->messages()->toJson();
+            return response()->json(['success'=> false, 'error'=> $error]);
+        }
+
+        
+        $user->update($request->all());
+
+        return response()->json(['success'=> true, 'message'=> 'Utilisateur modifié !'])->header('Content-Type', 'application/json');
     }
 
     /**
@@ -112,6 +133,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        
+        return response()->json(['success'=> true, 'message'=> 'Utilisateur supprimé !'])->header('Content-Type', 'application/json');
     }
 }
