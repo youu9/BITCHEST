@@ -20,10 +20,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $userlogged = JWTAuth::parseToken()->authenticate();
-        
-        $users = DB::table('users')->where('id', '=', $userlogged->id)->get();
-        return response()->json($users);
+        //TODO : Send all users excepts the logged one
+        // $userlogged = JWTAuth::parseToken()->authenticate();
+        // $users = DB::table('users')->where('id', '=', $userlogged->id)->get();
+        return response()->json(User::all());
     }
 
     /**
@@ -92,10 +92,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreUserRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        
+        $userLogged = JWTAuth::parseToken()->authenticate();
         $user = User::find($id);
+        if($userLogged->role != 'Admin'){
+            if($user->id != $userLogged->id){
+                return response()->json(['success'=> false, 'error'=> "Vous n'êtes pas autorisée à modifié cette utilisateur"])->header('Content-Type', 'application/json');
+            }
+        }
+        
+        
         $rules = [
             'name' => 'required|max:255',
             'email' => [
@@ -120,7 +127,7 @@ class UserController extends Controller
 
         if($validator->fails()) {
             $error = $validator->messages()->toJson();
-            return response()->json(['success'=> false, 'error'=> $error]);
+            return response()->json(['success'=> false, 'error'=> $error])->header('Content-Type', 'application/json');
         }
 
         
