@@ -9,6 +9,10 @@ import {UsersService} from "../../services/users/users.service";
 export class UsersComponent implements OnInit {
 users: any [];
 currencies: any [];
+userSelected: {};
+
+saveResponse: any;
+showList:boolean = true;
 
   constructor(private userService: UsersService) { }
 
@@ -20,6 +24,24 @@ currencies: any [];
       .subscribe( currencies => this.currencies = currencies);
   }
 
+  getUserInfo(id){
+    this.userService.getUser(id)
+      .subscribe(user =>{
+        this.userSelected = user;
+        console.log(this.userSelected)
+  });
+  }
 
-
+  save(user, id){
+    console.log(user)
+    this.userSelected = {
+      "id": user.id,
+      "name": user.name,
+      "email": user.email,
+      "role": user.role
+    };
+  console.log(this.userSelected)
+    this.userService.saveUser(this.userSelected, id)
+      .subscribe( saveResponse => this.saveResponse = saveResponse);
+  }
 }

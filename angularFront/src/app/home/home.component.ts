@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-   console.log(new JwtHelper().decodeToken(localStorage.getItem('token')))
+   //console.log(new JwtHelper().decodeToken(localStorage.getItem('token')))
   }
 
 }

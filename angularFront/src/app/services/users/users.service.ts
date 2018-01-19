@@ -49,4 +49,9 @@ export class UsersService {
     return this.http.get('bitchest/v1/user/' + id, this.option)
       .map(response => response.json());
   }
+
+  saveUser(user, id){
+    return this.http.post('bitchest/v1/user/' + id, user, this.option)
+      .map(response => response.json())
+  }
 }
