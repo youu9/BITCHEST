@@ -16,16 +16,16 @@ use Illuminate\Http\Request;
 
 
 Route::group(['prefix' => 'v1'], function() {
-    Route::post('register', 'AuthController@register'); // A voir
+    //Route::post('register', 'AuthController@register'); // A voir
     Route::post('login', 'AuthController@login'); // DONE
 });
 // Recover password
 //Route::post('recover', 'AuthController@recover');
 
 Route::group(['prefix' => 'v1','middleware' => ['jwt.auth']], function() {
-    Route::get('logout', 'AuthController@logout'); // A voir
+    // Route::get('logout', 'AuthController@logout'); // A voir
     // User CRUD 
-    
+
     Route::get('/users', "UserController@index"); // DONE
     Route::get('/user/{id}', "UserController@show"); // DONE
     Route::post('/user', "UserController@store"); // DONE

@@ -9,6 +9,7 @@ use Validator;
 use Hash;
 use Illuminate\Validation\Rule;
 use App\Http\Requests\StoreUserRequest;
+use JWTAuth;
 
 class UserController extends Controller
 {
@@ -19,6 +20,8 @@ class UserController extends Controller
      */
     public function index()
     {
+        $userlogged = JWTAuth::parseToken()->authenticate();
+        //$users = User::where('id', '!=', $userlogged->id);
         return response()->json(User::all());
     }
 

@@ -9,8 +9,7 @@ class TransactionController extends Controller
 {
     public function wallet(){
         $user = JWTAuth::parseToken()->authenticate();
-        
-        // dump($user->transactions);
+
         return response()->json(['success'=> true, 'wallet'=> $user->getWallet($user->id)]);
     }
 
