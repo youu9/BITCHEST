@@ -1,4 +1,11 @@
+<div class="container">
+  <h1>Dashboard</h1>
 
+
+  <p>
+    Welcome {{ userAuth?.name}}
+  </p>
+</div>
 <div class="container">
   <ul class="nav nav-pills">
     <li class="active"><a data-toggle="pill" href="#myTable">Users list</a></li>
@@ -24,6 +31,9 @@
           <th class="col-xs-6">
             <a></a>
           </th>
+          <th class="col-xs-6">
+            <a></a>
+          </th>
         </tr>
         </thead>
         <tbody style="height:400px">
@@ -31,7 +41,12 @@
           <td class="col-xs-3">{{user.email}}</td>
           <td class="col-xs-3">{{user.name}}</td>
           <td class="col-xs-6">{{user.role}}</td>
-          <button (click)="getUserInfo(user.id)" class="float-right btn btn-light btn-sm">Modifier</button>
+          <td>
+          <button (click)="getUserInfo(user.id)" class="float-right btn btn-primary btn-sm">Modifier</button>
+          </td>
+          <td>
+          <button (click)="getUserInfo(user.id)" class="float-right btn btn-danger btn-sm">Supprimer</button>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -66,35 +81,49 @@
 </div>
 
 
-{{diagnostic}}
+
+
 <div *ngIf="userSelected" class="container">
   <div class="row">
     <div class="col-md-6">
-      <form #f="ngForm" (ngSubmit)="save(f.value, userSelected.id)">
+      <form #f="ngForm" (ngSubmit)="save(f.value, userSelected?.id)">
         <div class="form-group">
-          <label for="name">Name</label>
-          <input name="name" id="name" type="text" class="form-control" value="{{userSelected?.name}}"  required>
+          <label for="name">Name : {{userSelected?.name}} </label>
+          <input
+            ngModel
+            #name="ngModel"
+            name="name"
+            id="name"
+            type="text"
+            class="form-control"
+            required>
         </div>
         <div class="form-group">
-          <label for="email">Email</label>
+          <label for="email">Email: {{userSelected?.email}}</label>
           <div class="input-group">
-            <input name="email" id="email" type="email" class="form-control" value="{{userSelected?.email}}" required>
+            <input
+              ngModel
+              #email="ngModel"
+              name="email"
+              id="email"
+              type="email"
+              class="form-control"
+              required>
           </div>
         </div>
         <div class="form-group">
           <label for="role">Role</label>
           <select name="role" id="role" class="form-control"  required>
             <option value="{{userSelected?.role}}"></option>
-            <option value="admin">
+            <option value="Admin">
               admin
             </option>
-            <option value="client">
+            <option value="Client">
               client
             </option>
           </select>
         </div>
         <button type="submit" class="btn btn-primary">Save</button>
-        <button class="btn btn-danger">Delete</button>
       </form>
     </div>
   </div>

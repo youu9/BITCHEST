@@ -1,17 +1,69 @@
 <div class="container">
-  <h1>Home Page</h1>
+  <h1>Dashboard</h1>
 
 
-  <p *ngIf="authService.isLoggedIn()">
-  Welcome {{ authService.currentUser.name}}
+  <p>
+  Welcome {{ userAuth?.name}}
   </p>
 </div>
 
-<!--      <ul>
-        <li *ngIf="authService.isLoggedIn() && authService.currentUser.admin">
-          <a routerLink="/admin">Admin</a>
-        </li>
-        <li *ngIf="!authService.isLoggedIn()"><a routerLink="/login">Login</a></li>
-       <li *ngIf="authService.isLoggedIn()"><a (click)="authService.logout()">Logout</a></li>
-      </ul>
--->
+<div class="container">
+  <ul class="nav nav-pills">
+    <li class="active"><a data-toggle="pill" href="#myCurrencyChart">Currency court</a></li>
+    <li><a data-toggle="pill" href="#userInfo">User info</a></li>
+  </ul>
+  <div class="tab-content">
+    <div id="myCurrencyChart" class="tab-pane fade in active">
+      <app-line-chart></app-line-chart>
+    </div>
+    <div id="userInfo" class="tab-pane fade">
+      <h3>Profil information</h3>
+      <div *ngIf="userAuth" class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <form #f="ngForm" (ngSubmit)="save(f.value, userAuth?.id)">
+              <div class="form-group">
+                <label for="name">Name : {{userAuth?.name}} </label>
+                <input
+                  ngModel
+                  #name="ngModel"
+                  name="name"
+                  id="name"
+                  type="text"
+                  class="form-control"
+                  required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email: {{userAuth?.email}}</label>
+                <div class="input-group">
+                  <input
+                    ngModel
+                    #email="ngModel"
+                    name="email"
+                    id="email"
+                    type="email"
+                    class="form-control"
+                    required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="role">Role</label>
+                <select name="role" id="role" class="form-control"  required>
+                  <option value="{{userAuth?.role}}"></option>
+                  <option value="Admin">
+                    admin
+                  </option>
+                  <option value="Client">
+                    client
+                  </option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

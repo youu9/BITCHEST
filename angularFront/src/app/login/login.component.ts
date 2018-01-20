@@ -10,11 +10,10 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class LoginComponent {
   invalidLogin: boolean;
 
-  constructor(
-    private router: Router,
-    private authService: AuthService,
-    private route: ActivatedRoute,
-  ) { }
+  constructor(private router: Router,
+              private authService: AuthService,
+              private route: ActivatedRoute,) {
+  }
 
   /**
    * Fonction signIn() appelée a la validation du formulaire d'authentification ( login.component.html) qui
@@ -31,7 +30,7 @@ export class LoginComponent {
       .subscribe(result => {
         if (result) {
           let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-          this.router.navigate( [ returnUrl || '/']);
+          this.router.navigate([returnUrl || '/']);
         }
         else
           this.invalidLogin = true;

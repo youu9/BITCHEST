@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import {environment} from '../../environments/environment';
 
@@ -21,13 +21,13 @@ export class AuthService {
   }
 
   login(credentials) {
-    console.log(credentials);
     return this.http.post(environment.login, credentials)
-      .map( r => {
-        console.log(r.headers);
+      .map( (r: Response) => {
         let result = r.headers.toJSON();
+        let body:string = JSON.parse(r['_body']);
         if ( result && result.authorization) {
           localStorage.setItem('token', result.authorization.toString());
+          localStorage.setItem('id', body.user.id);
           console.log(localStorage.getItem('token'));
           return true;
         }
@@ -44,6 +44,7 @@ export class AuthService {
    * */
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('id');
   }
 
   /**

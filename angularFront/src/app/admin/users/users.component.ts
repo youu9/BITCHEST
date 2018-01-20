@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UsersService} from "../../services/users/users.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-users',
@@ -9,14 +10,21 @@ import {UsersService} from "../../services/users/users.service";
 export class UsersComponent implements OnInit {
 users: any [];
 currencies: any [];
-userSelected: {};
-
+userAuth:any[];
+userSelected: {
+};
+userId: any;
 saveResponse: any;
 showList:boolean = true;
 
   constructor(private userService: UsersService) { }
 
   ngOnInit() {
+    this.userId = localStorage.getItem('id');
+
+    this.userService.getUser(this.userId)
+      .subscribe(userAuth => this.userAuth = userAuth);
+
     this.userService.getUsers()
       .subscribe(users => this.users = users);
 
@@ -28,20 +36,14 @@ showList:boolean = true;
     this.userService.getUser(id)
       .subscribe(user =>{
         this.userSelected = user;
-        console.log(this.userSelected)
   });
   }
 
   save(user, id){
     console.log(user)
-    this.userSelected = {
-      "id": user.id,
-      "name": user.name,
-      "email": user.email,
-      "role": user.role
-    };
-  console.log(this.userSelected)
-    this.userService.saveUser(this.userSelected, id)
+  //console.log(this.userSelected)
+    this.userService.saveUser(user, id)
       .subscribe( saveResponse => this.saveResponse = saveResponse);
+    if(this.saveResponse)console.log('OK!')
   }
 }
