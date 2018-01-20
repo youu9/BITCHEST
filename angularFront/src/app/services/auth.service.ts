@@ -24,7 +24,7 @@ export class AuthService {
     return this.http.post(environment.login, credentials)
       .map( (r: Response) => {
         let result = r.headers.toJSON();
-        let body:string = JSON.parse(r['_body']);
+        let body = JSON.parse(r['_body']);
         if ( result && result.authorization) {
           localStorage.setItem('token', result.authorization.toString());
           localStorage.setItem('id', body.user.id);
