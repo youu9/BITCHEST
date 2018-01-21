@@ -11,9 +11,10 @@ export class UsersComponent implements OnInit {
 users: any [];
 currencies: any [];
 userAuth:any[];
+userId: any;
 userSelected: {
 };
-userId: any;
+
 saveResponse: any;
 showList:boolean = true;
 

@@ -20,6 +20,8 @@ import { ChartsModule } from 'ng2-charts';
 import { LineChartComponent } from './line-chart/line-chart.component';
 import { UsersComponent } from './admin/users/users.component';
 import {UsersService} from './services/users/users.service';
+import { WalletComponent } from './wallet/wallet.component';
+import { TransactionComponent } from './transaction/transaction.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent,
@@ -30,6 +32,8 @@ const appRoutes: Routes = [
     ]
   },
   {path: 'login', component: LoginComponent},
+  {path: 'wallet', component: WalletComponent},
+  {path: 'transaction', component: TransactionComponent},
   {path: 'no-access', component: NoAccessComponent},
   //{path: 'notfound', component: NotFoundComponent}
   {path: 'dashboard', component: LineChartComponent,
@@ -49,6 +53,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     LineChartComponent,
     UsersComponent,
+    WalletComponent,
+    TransactionComponent,
   ],
   imports: [
     BrowserModule,

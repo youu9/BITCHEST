@@ -1,0 +1,69 @@
+<div class="container">
+  <h1>Transaction</h1>
+
+
+  <p>
+    Welcome {{ userAuth?.name}}
+  </p>
+</div>
+
+<div class="container">
+  <ul class="nav nav-pills">
+    <li class="active"><a data-toggle="pill" href="#buy">Buy</a></li>
+    <li><a data-toggle="pill" href="#sell">Sell</a></li>
+  </ul>
+  <div class="tab-content">
+    <div id="buy" class="tab-pane fade in active">
+      <h3>Buy</h3>
+      <table id="myBuy" class="table table-hover table-condensed table-bordered table-fixedheader">
+        <thead>
+        <tr>
+          <th class="col-xs-3"><a>Name</a>
+
+          </th>
+          <th class="col-xs-3">
+            <a >Symbol</a>
+          </th>
+
+          <th class="col-xs-6">
+            <a>Price</a>
+          </th>
+        </tr>
+        </thead>
+        <tbody style="height:400px">
+        <tr *ngFor="let currency of currencies">
+          <td class="col-xs-3">{{currency.name}}</td>
+          <td class="col-xs-3">{{currency.symbol}}</td>
+          <td class="col-xs-6">{{currency.today_quotation.rate}} €</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="sell" class="tab-pane fade">
+      <h3>Sell</h3>
+      <table id="mySell" class="table table-hover table-condensed table-bordered table-fixedheader">
+        <thead>
+        <tr>
+          <th class="col-xs-3"><a>Name</a>
+
+          </th>
+          <th class="col-xs-3">
+            <a >Symbol</a>
+          </th>
+
+          <th class="col-xs-6">
+            <a>Price</a>
+          </th>
+        </tr>
+        </thead>
+        <tbody style="height:400px">
+        <tr *ngFor="let currency of currencies">
+          <td class="col-xs-3">{{currency.name}}</td>
+          <td class="col-xs-3">{{currency.symbol}}</td>
+          <td class="col-xs-6">{{currency.today_quotation.rate}} €</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

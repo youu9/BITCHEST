@@ -13,5 +13,7 @@ export const ROUTES: RouteInfo[] = [
   //{ path: 'notfound', title: 'notfound', menuType: MenuType.LEFT },
   { path: 'admin', title: 'admin', menuType: MenuType.LEFT },
   { path: 'dashboard', title: 'Dashboard', menuType: MenuType.LEFT},
+  { path: 'wallet', title: 'Wallet', menuType: MenuType.LEFT},
+  { path: 'transaction', title: 'Transaction', menuType: MenuType.LEFT},
 ];
 
