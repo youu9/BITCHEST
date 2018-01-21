@@ -11,7 +11,7 @@ export class LoginComponent {
   invalidLogin: boolean;
 
   constructor(private router: Router,
-              private authService: AuthService,
+              public authService: AuthService,
               private route: ActivatedRoute,) {
   }
 
@@ -30,7 +30,7 @@ export class LoginComponent {
       .subscribe(result => {
         if (result) {
           let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-          this.router.navigate([returnUrl || '/']);
+          this.router.navigate([returnUrl || '/dashboard']);
         }
         else
           this.invalidLogin = true;

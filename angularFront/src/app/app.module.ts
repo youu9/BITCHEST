@@ -26,10 +26,10 @@ import {ClientAuthGuard} from "./services/client-auth-guard.service";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, ClientAuthGuard]
   },
   {path: 'admin', component: AdminComponent,
-    canActivate: [AuthGuard,// AdminAuthGuard
+    canActivate: [AuthGuard, AdminAuthGuard
     ]
   },
   {path: 'login', component: LoginComponent},

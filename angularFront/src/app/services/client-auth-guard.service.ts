@@ -11,8 +11,7 @@ export class ClientAuthGuard {
   ) { }
 
   canActivate() {
-    let user = this.authService.currentUser;
-    if (user && user.client) return true;
+    if(!this.authService.isAdmin()) return true;
 
     this.route.navigate(['/no-access']);
     return false;

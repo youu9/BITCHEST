@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import {CanActivate, Router} from '@angular/router';
 import {AuthService} from './auth.service';
+import {UsersService} from "./users/users.service";
 
 @Injectable()
 export class AdminAuthGuard implements CanActivate{
-
+  userAuth:any[];
+  userId: any;
   /**
    * Service de verification de droit d'utilisateur.
    * Si user connecté ET user.admin => alors on laisse passer
@@ -17,11 +19,11 @@ export class AdminAuthGuard implements CanActivate{
   constructor(
     private route: Router,
     private authService: AuthService,
+    private userService: UsersService
   ) { }
 
   canActivate() {
-    let user = this.authService.currentUser;
-    if (user && user.admin) return true;
+    if(this.authService.isAdmin()) return true;
 
     this.route.navigate(['/no-access']);
     return false;

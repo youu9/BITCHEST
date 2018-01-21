@@ -28,6 +28,7 @@ export class AuthService {
         if ( result && result.authorization) {
           localStorage.setItem('token', result.authorization.toString());
           localStorage.setItem('id', body.user.id);
+          localStorage.setItem('role', body.user.role);
           console.log(localStorage.getItem('token'));
           return true;
         }
@@ -45,6 +46,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('id');
+    localStorage.removeItem('role');
   }
 
   /**
@@ -55,6 +57,16 @@ export class AuthService {
    * */
   isLoggedIn() {
     return tokenNotExpired();
+  }
+
+  isAdmin(){
+    if(localStorage.getItem('role') === 'Admin') return true;
+    return false;
+  }
+
+  isClient(){
+    if(localStorage.getItem('role') === 'Client') return true;
+    return false;
   }
 
   /**

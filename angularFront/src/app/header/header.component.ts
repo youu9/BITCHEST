@@ -10,15 +10,18 @@ import {AuthService} from '../services/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public menuItems: any[];
-  public brandMenu: any;
+  public MenuItems: any[];
+  public BrandMenu: any;
+
+
   isCollapsed = true;
 
   constructor(public authService: AuthService) { }
 
   ngOnInit() {
-    this.menuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND);
-    this.brandMenu = ROUTES.filter(menuItem => menuItem.menuType === MenuType.BRAND)[0];
+    this.MenuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND);
+    this.BrandMenu = ROUTES.filter(menuItem => menuItem.menuType === MenuType.BRAND)[0];
+
   }
 
   public getMenuItemClasses(menuItem: any) {
@@ -26,5 +29,4 @@ export class HeaderComponent implements OnInit {
       'pull-xs-right': this.isCollapsed && menuItem.menuType === MenuType.RIGHT
     };
   }
-
 }
