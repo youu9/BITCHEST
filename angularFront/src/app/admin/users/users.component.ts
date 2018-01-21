@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UsersService} from "../../services/users/users.service";
-import {Router} from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
+import { Location } from "@angular/common";
 
 @Component({
   selector: 'app-users',
@@ -18,7 +19,24 @@ userSelected: {
 saveResponse: any;
 showList:boolean = true;
 
-  constructor(private userService: UsersService) { }
+  constructor(private userService: UsersService,
+              private route: Router,
+              ) {
+    // override the route reuse strategy
+    this.route.routeReuseStrategy.shouldReuseRoute = function(){
+      return false;
+    }
+
+    this.route.events.subscribe((evt) => {
+      if (evt instanceof NavigationEnd) {
+        // trick the Router into believing it's last link wasn't previously loaded
+        this.route.navigated = false;
+        // if you need to scroll back to top, here is the right place
+        window.scrollTo(0, 0);
+      }
+    });
+
+  }
 
   ngOnInit() {
     this.userId = localStorage.getItem('id');
@@ -45,6 +63,6 @@ showList:boolean = true;
   //console.log(this.userSelected)
     this.userService.saveUser(user, id)
       .subscribe( saveResponse => this.saveResponse = saveResponse);
-    if(this.saveResponse)console.log('OK!')
+   this.route.navigate(['/admin']);
   }
 }

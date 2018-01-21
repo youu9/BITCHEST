@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers} from "@angular/http";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class UsersService {
@@ -17,7 +18,8 @@ export class UsersService {
    * @author Younes CHBADA
    * @version 1.0
    * */
-  constructor(private http: Http) {
+  constructor(private http: Http,
+              private route: Router) {
     this.token = localStorage.getItem('token');
     this.headers = new Headers({
       'Content-Type': 'application/json',
@@ -52,6 +54,7 @@ export class UsersService {
 
   saveUser(user, id){
     return this.http.post('bitchest/v1/user/' + id, user, this.option)
-      .map(response => response.json())
+      .map(response => response.json());
+
   }
 }

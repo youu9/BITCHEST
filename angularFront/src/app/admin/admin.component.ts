@@ -13,7 +13,9 @@ import { Component, OnInit } from '@angular/core';
 export class AdminComponent implements OnInit {
   //orders: any[];
 
-  constructor(/*private orderService: OrderService*/) { }
+  constructor(/*private orderService: OrderService*/) {
+    // override the route reuse strategy
+  }
 
   ngOnInit() {
     //this.orderService.getOrders()
