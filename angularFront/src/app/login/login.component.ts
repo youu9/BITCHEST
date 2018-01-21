@@ -28,9 +28,13 @@ export class LoginComponent {
   signIn(credentials) {
     this.authService.login(credentials)
       .subscribe(result => {
-        if (result) {
+        if (result && this.authService.isAdmin()) {
           let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-          this.router.navigate([returnUrl || '/dashboard']);
+          this.router.navigate([returnUrl || '/admin']);
+        }
+        else if(result){
+          let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+          this.router.navigate([returnUrl || '/']);
         }
         else
           this.invalidLogin = true;

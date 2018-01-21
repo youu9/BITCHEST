@@ -19,3 +19,10 @@
   margin-top: -50px;
   margin-left: 140px;
 }
+
+.navbar-brand>img {
+  padding: 15px; /* firefox bug fix */
+  width: 140px;
+  margin-top: -30px;
+  margin-left: -60px;
+}

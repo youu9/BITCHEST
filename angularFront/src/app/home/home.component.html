@@ -47,16 +47,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="role">Role</label>
-                <select name="role" id="role" class="form-control"  required>
-                  <option value="{{userAuth?.role}}"></option>
-                  <option value="Admin">
-                    admin
-                  </option>
-                  <option value="Client">
-                    client
-                  </option>
-                </select>
+                <label>Role : {{userAuth?.role}}</label>
               </div>
               <button type="submit" class="btn btn-primary">Save</button>
             </form>
@@ -67,26 +58,3 @@
     </div>
   </div>
 </div>
-
-
-<ul class="nav navbar-nav">
-  <ul class="nav navbar-nav pull-xs-left">
-
-    <li *ngIf="authService.isAdmin()" class="nav-item">
-
-    </li>
-    <li *ngIf="authService.isClient()" class="nav-item" routerLinkActive="active">
-      <a class="nav-item nav-link" routerLink="/">Home</a>
-    </li>
-    <li *ngIf="authService.isClient()" class="nav-item" routerLinkActive="active">
-      <a class="nav-item nav-link" routerLink="/wallet">Wallet</a>;
-    </li>
-    <li *ngIf="authService.isClient()" class="nav-item" routerLinkActive="active">
-      <a class="nav-item nav-link" routerLink="/transaction">Transaction</a>;
-    </li>
-  </ul>
-  <ul class="nav navbar-nav pull-xs-right">
-    <li *ngIf="authService.isLoggedIn()"><a class="nav navbat-right" (click)="authService.logout()">Logout</a></li>
-    <li *ngIf="!authService.isLoggedIn()"><a routerLink="/login">Login</a></li>
-  </ul>
-</ul>
