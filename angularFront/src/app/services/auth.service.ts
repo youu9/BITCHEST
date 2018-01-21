@@ -3,6 +3,7 @@ import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Http, Headers, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import {environment} from '../../environments/environment';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthService {
@@ -17,7 +18,9 @@ export class AuthService {
    * @author Younes CHBADA
    * @version 1.0
    * */
-  constructor(private http: Http) {
+  constructor(private http: Http,
+              private route: Router,
+              ) {
   }
 
   login(credentials) {
@@ -47,6 +50,8 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('id');
     localStorage.removeItem('role');
+
+    this.route.navigate(['/login']);
   }
 
   /**
