@@ -22,6 +22,7 @@ import { UsersComponent } from './admin/users/users.component';
 import {UsersService} from './services/users/users.service';
 import { WalletComponent } from './wallet/wallet.component';
 import { TransactionComponent } from './transaction/transaction.component';
+import {ClientAuthGuard} from "./services/client-auth-guard.service";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent,
@@ -32,8 +33,12 @@ const appRoutes: Routes = [
     ]
   },
   {path: 'login', component: LoginComponent},
-  {path: 'wallet', component: WalletComponent},
-  {path: 'transaction', component: TransactionComponent},
+  {path: 'wallet', component: WalletComponent,
+    canActivate: [AuthGuard, ClientAuthGuard]
+  },
+  {path: 'transaction', component: TransactionComponent,
+    canActivate: [AuthGuard, ClientAuthGuard]
+  },
   {path: 'no-access', component: NoAccessComponent},
   //{path: 'notfound', component: NotFoundComponent}
   {path: 'dashboard', component: LineChartComponent,
@@ -70,6 +75,7 @@ const appRoutes: Routes = [
     AuthService,
     UsersService,
     AdminAuthGuard,
+    ClientAuthGuard
   ],
   bootstrap: [AppComponent]
 })
