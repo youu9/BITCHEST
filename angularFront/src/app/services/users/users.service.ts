@@ -74,6 +74,6 @@ export class UsersService {
   }
 
   buy(items){
-    return this.http.post('bitchest/v1/buy/currency/' + items.currencyId, items.quantity, this.option)
+    return this.http.post('bitchest/v1/buy/currency/' + items.currencyId, {'quantity': parseInt(items.quantity)}, this.option)
   }
 }
