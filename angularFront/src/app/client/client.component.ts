@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UsersService} from "../services/users/users.service";
 import {NavigationEnd, Router} from "@angular/router";
 import { Location } from "@angular/common";
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-client',
@@ -68,11 +69,20 @@ export class ClientComponent implements OnInit {
      this.route.navigate(['/admin']);
     }
 
-    updateUser(credentials){
-      this.userService.saveUser(credentials, this.userSelected)
+    updateUser(credentials, id){
+      this.userService.saveUser(credentials, id)
       .subscribe((response: Response) => {
         let res:any = response;
         if(res.success){
+          for(let user of this.users){
+            if(user.id === id){
+              user.name = credentials.name;
+              user.email = credentials.email;
+              user.role = credentials.role;
+              break;
+            }
+          }
+          console.log(this.users);
           this.successPost = true;
         }
       });
