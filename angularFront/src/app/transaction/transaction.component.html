@@ -12,32 +12,50 @@
     <li class="active"><a data-toggle="pill" href="#buy">Buy</a></li>
     <li><a data-toggle="pill" href="#sell">Sell</a></li>
   </ul>
+
   <div class="tab-content">
     <div id="buy" class="tab-pane fade in active">
       <h3>Buy</h3>
-      <table id="myBuy" class="table table-hover table-condensed table-bordered table-fixedheader">
-        <thead>
-        <tr>
-          <th class="col-xs-3"><a>Name</a>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
 
-          </th>
-          <th class="col-xs-3">
-            <a >Symbol</a>
-          </th>
+            <form #f="ngForm" (ngSubmit)="buy(f.value)">
+              <div class="form-group">
+                <label for="quantity">Quantity : </label>
+                <div class="input-group">
+                <input
+                  ngModel
+                  name="quantity"
+                  #quantity="ngModel"
+                  id="quantity"
+                  type="text"
+                  class="form-control"
+                  required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="currencyId">Currency</label>
+                <select
+                  ngModel
+                  #currencyId="ngModel"
+                  name="currencyId"
+                  id="currencyId"
+                  class="form-control"
+                  required>
+                  <option *ngFor="let currency of currencies" value="{{currency?.id}}">{{currency?.name}} {{currency?.price}} €</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Buy</button>
+            </form>
 
-          <th class="col-xs-6">
-            <a>Price</a>
-          </th>
-        </tr>
-        </thead>
-        <tbody style="height:400px">
-        <tr *ngFor="let currency of currencies">
-          <td class="col-xs-3">{{currency.name}}</td>
-          <td class="col-xs-3">{{currency.symbol}}</td>
-          <td class="col-xs-6">{{currency.today_quotation.rate}} €</td>
-        </tr>
-        </tbody>
-      </table>
+
+          </div>
+        </div>
+      </div>
+
+
+
     </div>
     <div id="sell" class="tab-pane fade">
       <h3>Sell</h3>

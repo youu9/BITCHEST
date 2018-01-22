@@ -1,0 +1,20 @@
+
+<div class="container">
+  <h1>{{name}}</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div style="display: block">
+        <canvas baseChart width="200px" height="200px"
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [colors]="lineChartColors"
+                [chartType]="lineChartType"
+                (chartHover)="chartHovered($event)">
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>

@@ -21,6 +21,9 @@
          [ngClass]="getMenuItemClasses(MenuItem)">
       <a class="nav-item nav-link"  [routerLink]="[MenuItem.path]" routerLinkActive="active">{{MenuItem.title}}</a>
     </li>
+    <li>
+      <a class="nav-itm nav-link">Solde:{{userWalletTotal}} €</a>
+    </li>
   </ul>
 
     <ul class="nav navbar-nav pull-xs-right">

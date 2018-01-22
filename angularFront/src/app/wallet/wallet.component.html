@@ -5,6 +5,7 @@
   <p>
     Welcome {{ userAuth?.name}}
   </p>
+  <p>Solde du compte : {{userWalletTotal}} €</p>
 </div>
 
 <div class="container">
@@ -16,54 +17,43 @@
     <div id="myBuy" class="tab-pane fade in active">
       <h3>Currency owned</h3>
       <table id="myCurrencyOwn" class="table table-hover table-condensed table-bordered table-fixedheader">
-        <thead>
-        <tr>
-          <th class="col-xs-3"><a>Name</a>
+          <thead>
 
-          </th>
-          <th class="col-xs-3">
-            <a >Symbol</a>
-          </th>
+          <tr>
+            <th class="col-xs-3"><a>Name</a>
 
-          <th class="col-xs-6">
-            <a>Price</a>
-          </th>
-        </tr>
-        </thead>
+            </th>
+            <th class="col-xs-3">
+              <a >Symbol</a>
+            </th>
+
+            <th class="col-xs-3">
+              <a >Quantity</a>
+            </th>
+
+            <th class="col-xs-6">
+              <a>Price</a>
+            </th>
+            <th class="col-xs-6">
+            </th>
+          </tr>
+          </thead>
+          <tbody style="height:400px">
         <tbody style="height:400px">
-        <tr *ngFor="let currency of currencies">
+        <tr *ngFor="let currency of userWallet" routerLinkActive="active" (click)="goToDetails(currency.id, currency.name)">
           <td class="col-xs-3">{{currency.name}}</td>
           <td class="col-xs-3">{{currency.symbol}}</td>
-          <td class="col-xs-6">{{currency.today_quotation.rate}} €</td>
+          <td class="col-xs-3">{{currency.quantity}}</td>
+          <td class="col-xs-6">{{currency.price}} €</td>
+          <td>
+            <button (click)="getUserInfo(user.id)" class="float-right btn btn-danger btn-sm">Sell</button>
+          </td>
         </tr>
         </tbody>
-      </table>
+        </table>
     </div>
     <div id="mySell" class="tab-pane fade">
       <h3>Currency sold</h3>
-      <table id="myCurrencySold" class="table table-hover table-condensed table-bordered table-fixedheader">
-        <thead>
-        <tr>
-          <th class="col-xs-3"><a>Name</a>
-
-          </th>
-          <th class="col-xs-3">
-            <a >Symbol</a>
-          </th>
-
-          <th class="col-xs-6">
-            <a>Price</a>
-          </th>
-        </tr>
-        </thead>
-        <tbody style="height:400px">
-        <tr *ngFor="let currency of currencies">
-          <td class="col-xs-3">{{currency.name}}</td>
-          <td class="col-xs-3">{{currency.symbol}}</td>
-          <td class="col-xs-6">{{currency.today_quotation.rate}} €</td>
-        </tr>
-        </tbody>
-      </table>
     </div>
   </div>
 </div>

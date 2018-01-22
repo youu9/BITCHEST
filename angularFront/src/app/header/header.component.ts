@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MenuType} from './header.metadata';
 import {ROUTES} from './header-routes.config';
 import {AuthService} from '../services/auth.service';
+import {UsersService} from "../services/users/users.service";
 
 
 @Component({
@@ -12,15 +13,21 @@ import {AuthService} from '../services/auth.service';
 export class HeaderComponent implements OnInit {
   public MenuItems: any[];
   public BrandMenu: any;
-
+  userWalletTotal;
 
   isCollapsed = true;
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService,
+              public userService: UsersService) { }
 
   ngOnInit() {
     this.MenuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND);
     this.BrandMenu = ROUTES.filter(menuItem => menuItem.menuType === MenuType.BRAND)[0];
+
+    this.userService.getUserWallet()
+      .subscribe(userWallet => {
+        this.userWalletTotal = userWallet.wallet.total;
+      });
 
   }
 

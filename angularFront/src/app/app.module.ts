@@ -23,6 +23,7 @@ import {UsersService} from './services/users/users.service';
 import { WalletComponent } from './wallet/wallet.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import {ClientAuthGuard} from "./services/client-auth-guard.service";
+import { CurrencyInfoComponent } from './currency-info/currency-info.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent,
@@ -31,6 +32,8 @@ const appRoutes: Routes = [
   {path: 'admin', component: AdminComponent,
     canActivate: [AuthGuard, AdminAuthGuard
     ]
+  },{
+   path: 'currency/info/:id/:name', component: CurrencyInfoComponent,
   },
   {path: 'admin1', component: AdminComponent,
     canActivate: [AuthGuard, AdminAuthGuard
@@ -64,6 +67,7 @@ const appRoutes: Routes = [
     UsersComponent,
     WalletComponent,
     TransactionComponent,
+    CurrencyInfoComponent,
   ],
   imports: [
     BrowserModule,

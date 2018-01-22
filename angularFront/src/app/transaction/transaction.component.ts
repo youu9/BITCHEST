@@ -9,6 +9,8 @@ import {UsersService} from "../services/users/users.service";
 export class TransactionComponent implements OnInit {
   userAuth:any[];
   userId: any;
+  currencies: any[];
+  res;
 
   constructor(private userService: UsersService) { }
 
@@ -18,6 +20,15 @@ export class TransactionComponent implements OnInit {
 
     this.userService.getUser(this.userId)
       .subscribe(userAuth => this.userAuth = userAuth);
+
+    this.userService.getCurrencies()
+      .subscribe(currencies => this.currencies = currencies);
+  }
+
+  buy(items){
+    console.log(items);
+    this.userService.buy(items)
+      .subscribe( res => this.res = res );
   }
 
 }

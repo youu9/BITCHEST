@@ -57,4 +57,23 @@ export class UsersService {
       .map(response => response.json());
 
   }
+
+  getUserWallet(){
+    return this.http.get('bitchest/v1/wallet', this.option)
+      .map(response => response.json());
+  }
+
+  getCurrency(id){
+    return this.http.get('bitchest/v1/currency/' + id, this.option)
+      .map(response => response.json());
+  }
+
+  getCurrencyTransaction(id){
+    return this.http.get('bitchest/v1/currency/' + id + '/transactions', this.option)
+      .map(response => response.json());
+  }
+
+  buy(items){
+    return this.http.post('bitchest/v1/buy/currency/' + items.currencyId, items.quantity, this.option)
+  }
 }

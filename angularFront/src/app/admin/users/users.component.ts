@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UsersService} from "../../services/users/users.service";
 import {NavigationEnd, Router} from "@angular/router";
-import { Location } from "@angular/common";
 
 @Component({
   selector: 'app-users',

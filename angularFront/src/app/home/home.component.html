@@ -14,7 +14,30 @@
   </ul>
   <div class="tab-content">
     <div id="myCurrencyChart" class="tab-pane fade in active">
-      <app-line-chart></app-line-chart>
+      <h3>Currency</h3>
+      <table id="myTableCurrency" class="table table-hover table-condensed table-bordered table-fixedheader">
+        <thead>
+        <tr>
+          <th class="col-xs-3"><a>Name</a>
+
+          </th>
+          <th class="col-xs-3">
+            <a >Symbol</a>
+          </th>
+
+          <th class="col-xs-6">
+            <a>Price</a>
+          </th>
+        </tr>
+        </thead>
+        <tbody style="height:400px">
+        <tr *ngFor="let currency of currencies" routerLinkActive="active" routerLink="/currency/{currency.id}">
+          <td class="col-xs-3">{{currency.name}}</td>
+          <td class="col-xs-3">{{currency.symbol}}</td>
+          <td class="col-xs-6">{{currency.today_quotation.rate}} €</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
     <div id="userInfo" class="tab-pane fade">
       <h3>Profil information</h3>
