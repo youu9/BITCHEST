@@ -9,6 +9,7 @@ use JWTAuth;
 use Carbon\Carbon;
 use App\Quotation;
 use Validator;
+use DB;
 
 class TransactionController extends Controller
 {
@@ -49,7 +50,14 @@ class TransactionController extends Controller
             return response()->json(['success'=> false, 'error'=> $error]);
         }
 
-        $transactions = Transaction::where('state','=',$request->state)->where('user_id','=',$user->id)->get();
+        $transactions =  DB::table('transactions')
+        ->join('currencies', 'currencies.id', '=', 'transactions.currency_id')
+        ->join('users', 'users.id', '=', 'transactions.user_id')
+        ->select("currencies.*", "transactions.*")
+        ->where('transactions.state', '=', $request->state)
+        ->where('users.id', '=', $user->id)
+        ->get();
+
         return response()->json( $transactions );
     }
    
