@@ -1,20 +1,39 @@
 import { AuthService } from '../services/auth.service';
 import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-
+import {User}  from '../model/user';
+// import { EmailValidator } from '@angular/forms';
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent {
   invalidLogin: boolean;
+
+  // user = new User()
+
+  user = {
+    'email': '',
+    'password': '',
+  }
 
   constructor(private router: Router,
               public authService: AuthService,
               private route: ActivatedRoute,) {
   }
 
+
+  attemptLogin(){
+    
+    var credentials = {
+      'email': this.user.email,
+      'password': this.user.password,
+    }
+
+     this.signIn(credentials)
+  }
   /**
    * Fonction signIn() appelée a la validation du formulaire d'authentification ( login.component.html) qui
    * fait passer les (credentials => login/pwd) pour validation

@@ -1,0 +1,11 @@
+.list-currency{
+    display:flex;
+    justify-content: space-around;
+    align-items: end;
+    vertical-align: top;
+}
+
+.list-currency li{
+    max-width:25%;
+    width:100%;
+}

@@ -1,0 +1,80 @@
+<div class="container">
+    <h2>Clients</h2>
+  </div>
+  <div class="container">
+    <div class="tab-content">
+      <div id="myTable" class="tab-pane fade in active">
+        <h3>User List</h3>
+        <table id="myTableUser" class="table table-hover table-condensed table-bordered table-fixedheader">
+          <thead>
+          <tr>
+              <th class="col-xs-3"><a>Nom</a></th>
+      
+              <th class="col-xs-3"><a>Email</a></th>
+  
+              <th class="col-xs-3"><a>role</a></th>
+  
+            <th class="col-xs-6" colspan="2"></th>
+            
+          </tr>
+          </thead>
+          <tbody style="height:400px">
+          <tr *ngFor="let user of users">
+            <td class="col-xs-3">{{user.name}}</td>
+            <td class="col-xs-3">{{user.email}}</td>
+            <td class="col-xs-3">{{user.role}}</td>
+            <td  colspan="2"> 
+              <button (click)="getUserInfo(user.id)" class="float-right btn btn-primary btn-sm">Modifier</button>
+              <button (click)="getUserInfo(user.id)" class="float-right btn btn-danger btn-sm">Supprimer</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  <div *ngIf="userSelected" class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <form #f="ngForm" (ngSubmit)="updateUser(f.value)">
+            <div class="form-group">
+              <label for="name">Nom</label>
+              <input
+                [(ngModel)]='userAuth.name'
+                #name="ngModel"
+                name="name"
+                id="name"
+                type="text"
+                class="form-control"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <div class="input-group">
+                <input
+                 [(ngModel)]='userAuth.email'
+                  #email="ngModel"
+                  name="email"
+                  id="email"
+                  type="email"
+                  class="form-control"
+                  required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Role</label>
+              <select name="role" id="role" class="form-control" [(ngModel)]='userAuth.role'>
+                <option value="Client">Client</option>
+                <option value="Admin">Admin</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Mettre à jour</button>
+          </form>
+          <div *ngIf='successPost' class="alert alert-success" role="alert">Utilisateur mis à jour !</div>
+        </div>
+      </div>
+    </div>
