@@ -87,4 +87,8 @@ export class UsersService {
     return this.http.post('bitchest/v1/transactions/', {'state' : 'own'}, this.option)
       .map(response => response.json());
   }
+  mySell(){
+    return this.http.post('bitchest/v1/transactions/', {'state' : 'sold'}, this.option)
+      .map(response => response.json());
+  }
 }
