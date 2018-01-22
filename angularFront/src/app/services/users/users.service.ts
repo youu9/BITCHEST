@@ -75,5 +75,20 @@ export class UsersService {
 
   buy(items){
     return this.http.post('bitchest/v1/buy/currency/' + items.currencyId, {'quantity': parseInt(items.quantity)}, this.option)
+      .map(response => response.json());
+  }
+
+  sell(id){
+    return this.http.post('bitchest/v1/sell/transaction/' + id, this.option)
+      .map(response=> response.json());
+  }
+
+  myBuy(){
+    return this.http.post('bitchest/v1/transactions/', {'state' : 'own'}, this.option)
+      .map(response => response.json());
+  }
+  mySell(){
+    return this.http.post('bitchest/v1/transactions/', {'state' : 'sold'}, this.option)
+      .map(response => response.json());
   }
 }

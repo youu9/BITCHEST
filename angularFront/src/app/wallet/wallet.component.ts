@@ -12,6 +12,8 @@ export class WalletComponent implements OnInit {
   userId: any;
   userWallet:any [];
   userWalletTotal: any;
+  myBuy:any [];
+  mySell:any [];
 
   constructor(private userService: UsersService,
               private route: Router
@@ -29,6 +31,12 @@ export class WalletComponent implements OnInit {
         this.userWalletTotal = userWallet.wallet.total;
         this.userWallet = userWallet.wallet.currencies;
       });
+
+    this.userService.myBuy()
+      .subscribe(myBuy => this.myBuy = myBuy);
+
+    this.userService.mySell()
+      .subscribe(mySell => this.mySell = mySell);
   }
 
   goToDetails(id, name){

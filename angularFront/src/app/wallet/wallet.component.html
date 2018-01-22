@@ -54,6 +54,45 @@
     </div>
     <div id="mySell" class="tab-pane fade">
       <h3>Currency sold</h3>
+      <table id="myCurrencySold" class="table table-hover table-condensed table-bordered table-fixedheader">
+        <thead>
+
+        <tr>
+          <th class="col-xs-3"><a>Name</a>
+
+          </th>
+          <th class="col-xs-3">
+            <a >Symbol</a>
+          </th>
+
+          <th class="col-xs-3">
+            <a >Quantity</a>
+          </th>
+
+          <th class="col-xs-6">
+            <a>Price</a>
+          </th>
+          <th class="col-xs-6">
+            <a>Date</a>
+          </th>
+          <th class="col-xs-6">
+          </th>
+        </tr>
+        </thead>
+        <tbody style="height:400px">
+        <tr *ngFor="let sell of mySell" routerLinkActive="active" (click)="goToDetails(currency.id, currency.name)">
+          <td class="col-xs-3">{{sell.name}}</td>
+          <td class="col-xs-3">{{sell.symbol}}</td>
+          <td class="col-xs-3">{{sell.quantity}}</td>
+          <td class="col-xs-3">{{sell.quantity}}</td>
+          <td class="col-xs-6">{{sell.price}} €</td>
+          <td>
+            <button (click)="getUserInfo(user.id)" class="float-right btn btn-danger btn-sm">Sell</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
     </div>
   </div>
 </div>
