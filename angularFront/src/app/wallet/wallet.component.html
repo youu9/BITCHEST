@@ -40,11 +40,11 @@
           </thead>
           <tbody style="height:400px">
         <tbody style="height:400px">
-        <tr *ngFor="let currency of userWallet" routerLinkActive="active" (click)="goToDetails(currency.id, currency.name)">
-          <td class="col-xs-3">{{currency.name}}</td>
-          <td class="col-xs-3">{{currency.symbol}}</td>
-          <td class="col-xs-3">{{currency.quantity}}</td>
-          <td class="col-xs-6">{{currency.price}} €</td>
+        <tr *ngFor="let buy of myBuy" routerLinkActive="active" (click)="goToDetails(currency.id, currency.name)">
+          <td class="col-xs-3">{{buy.name}}</td>
+          <td class="col-xs-3">{{buy.symbol}}</td>
+          <td class="col-xs-3">{{buy.quantity}}</td>
+          <td class="col-xs-6">{{buy.price}} €</td>
           <td>
             <button (click)="getUserInfo(user.id)" class="float-right btn btn-danger btn-sm">Sell</button>
           </td>
