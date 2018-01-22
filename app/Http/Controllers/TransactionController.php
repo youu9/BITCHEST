@@ -32,7 +32,27 @@ class TransactionController extends Controller
 
         return response()->json( $transactions );
     }
+    public function all(Request $request){
+        $user = JWTAuth::parseToken()->authenticate();
+        $rules = [
+            'state' => 'required',
+        ];
 
+        $input = $request->only(
+            'state'
+        );
+
+        $validator = Validator::make($input, $rules);
+
+        if($validator->fails()) {
+            $error = $validator->messages()->toJson();
+            return response()->json(['success'=> false, 'error'=> $error]);
+        }
+
+        $transactions = Transaction::where('state','=',$request->state)->where('user_id','=',$user->id)->get();
+        return response()->json( $transactions );
+    }
+   
     public function sell(Request $request, $id){
         $transaction = Transaction::findOrFail($id);
         if($transaction->state != 'sold'){
@@ -50,7 +70,7 @@ class TransactionController extends Controller
         $user = JWTAuth::parseToken()->authenticate();
         
         $rules = [
-            'quantity' => 'required|integer',
+            'quantity' => 'required|integer|min:1',
             
         ];
 

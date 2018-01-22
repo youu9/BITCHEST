@@ -14,6 +14,7 @@ export class ClientComponent implements OnInit {
   currencies: any [];
   userAuth:any[];
   userId: any;
+  successPost : Boolean;
   userSelected: {
   };
   
@@ -65,6 +66,16 @@ export class ClientComponent implements OnInit {
       this.userService.saveUser(user, id)
         .subscribe( saveResponse => this.saveResponse = saveResponse);
      this.route.navigate(['/admin']);
+    }
+
+    updateUser(credentials){
+      this.userService.saveUser(credentials, this.userSelected)
+      .subscribe((response: Response) => {
+        let res:any = response;
+        if(res.success){
+          this.successPost = true;
+        }
+      });
     }
   
     delete(id) {
