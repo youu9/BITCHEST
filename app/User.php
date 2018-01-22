@@ -57,6 +57,19 @@ class User extends Authenticatable implements JWTSubject
         
         return $out;
     }
+    public function getTransactionByCurrencyId($id){
+
+        $transactions = DB::table('transactions')
+        ->join('currencies', 'currencies.id', '=', 'transactions.currency_id')
+        ->join('users', 'users.id', '=', 'transactions.user_id')
+        ->select("transactions.*")
+        ->where('users.id', '=', $this->id)
+        ->where('currencies.id', '=', $id)
+        ->where('transactions.state', '=', 'own')
+        ->get();
+
+        return $transactions;
+    }
     
     /**
      * hash password before update

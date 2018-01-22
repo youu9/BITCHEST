@@ -33,3 +33,12 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.logo{
+  width:100%;
+  max-width:150px;
+}
+.btn-block{
+  background-color: #01ff19;
+  border:none;
+}

@@ -1,83 +1,14 @@
 <div class="container">
-  <h1>Dashboard</h1>
 
+  <h2>Dashboard</h2>
 
-  <p>
-  Welcome {{ userAuth?.name}}
-  </p>
-</div>
-
-<div class="container">
-  <ul class="nav nav-pills">
-    <li class="active"><a data-toggle="pill" href="#myCurrencyChart">Currency court</a></li>
-    <li><a data-toggle="pill" href="#userInfo">User info</a></li>
-  </ul>
-  <div class="tab-content">
-    <div id="myCurrencyChart" class="tab-pane fade in active">
-      <h3>Currency</h3>
-      <table id="myTableCurrency" class="table table-hover table-condensed table-bordered table-fixedheader">
-        <thead>
-        <tr>
-          <th class="col-xs-3"><a>Name</a>
-
-          </th>
-          <th class="col-xs-3">
-            <a >Symbol</a>
-          </th>
-
-          <th class="col-xs-6">
-            <a>Price</a>
-          </th>
-        </tr>
-        </thead>
-        <tbody style="height:400px">
-        <tr *ngFor="let currency of currencies" routerLinkActive="active" routerLink="/currency/{currency.id}">
-          <td class="col-xs-3">{{currency.name}}</td>
-          <td class="col-xs-3">{{currency.symbol}}</td>
-          <td class="col-xs-6">{{currency.today_quotation.rate}} €</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-    <div id="userInfo" class="tab-pane fade">
-      <h3>Profil information</h3>
-      <div *ngIf="userAuth" class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <form #f="ngForm" (ngSubmit)="save(f.value, userAuth?.id)">
-              <div class="form-group">
-                <label for="name">Name : {{userAuth?.name}} </label>
-                <input
-                  ngModel
-                  #name="ngModel"
-                  name="name"
-                  id="name"
-                  type="text"
-                  class="form-control"
-                  required>
-              </div>
-              <div class="form-group">
-                <label for="email">Email: {{userAuth?.email}}</label>
-                <div class="input-group">
-                  <input
-                    ngModel
-                    #email="ngModel"
-                    name="email"
-                    id="email"
-                    type="email"
-                    class="form-control"
-                    required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label>Role : {{userAuth?.role}}</label>
-              </div>
-              <button type="submit" class="btn btn-primary">Save</button>
-            </form>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
+  <h3>Cours actuel</h3>
+  <ul class="list-currency nav nav-pills" role="tablist">
+      <li *ngFor="let currency of currencies" class="list-group-item">
+        {{currency.today_quotation.rate}} €
+        <span>{{currency.today_quotation.diff}}</span>
+        {{ currency.symbol }}
+        {{ currency.name }}
+      </li>
+    </ul>
 </div>

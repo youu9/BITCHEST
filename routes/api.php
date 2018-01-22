@@ -13,7 +13,10 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+header("Access-Control-Allow-Origin: *");
+header('Access-Control-Expose-Headers: Authorization');
+header('Access-Control-Allow-Headers:Access-Control-Allow-Origin, Authorization, Origin, Content-Type, X-Auth-Token');
+header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
 
 Route::group(['prefix' => 'v1'], function() {
     //Route::post('register', 'AuthController@register'); // A voir
@@ -32,21 +35,15 @@ Route::group(['prefix' => 'v1','middleware' => ['jwt.auth']], function() {
     Route::post('/user/{id}', "UserController@update"); // DONE
     Route::delete('/user/{id}', "UserController@destroy"); // DONE
 
-    // Wallet of client ex1
-    // Route::get('/user/{id}/wallet/', "TransactionController@wallet"); // porte feuille ?
-    // Route::post('/user/{id}/wallet/{id}', "TransactionController@sell"); // Vendre ?
-    // Route::post('/user/{id}/currency/{id}', "TransactionController@buy"); // Achat ?
+
 
     // Client
     Route::get('/wallet/', "TransactionController@wallet"); // porte feuille ?
     Route::get('/currency/{id}/transactions', "TransactionController@list"); // 
     Route::post('/sell/transaction/{id}', "TransactionController@sell"); // Vendre ?
-    Route::post('/buy/', "TransactionController@buy"); // Achat ?
+    Route::post('/buy/currency/{id}', "TransactionController@buy"); // Achat ?
     
-    // Wallet of client ex3
-    // Route::get('/user/{id}/wallet/', "TransactionController@wallet"); // porte feuille ?
-    // Route::post('/user/{id}/buy/{id}', "TransactionController@sell"); // Vendre ?
-    // Route::post('/user/{id}/sell/{id}', "TransactionController@buy"); // Achat ?
+   
 
     // Currencies get and show
     Route::get('/currencies', "CurrencyController@index"); // DONE

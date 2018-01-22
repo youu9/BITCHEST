@@ -9,9 +9,8 @@ import {UsersService} from "../services/users/users.service";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-currencies:any [];
-userAuth:any[];
-userId: any;
+  currencies:any [];
+  userId: any;
   /**
    * Verification de d'utilisateur connecté en fonction de la présence
    * d'un token en localStorage.
@@ -30,9 +29,6 @@ userId: any;
     this.userService.getCurrencies()
       .subscribe( currencies => this.currencies = currencies);
    //console.log(new JwtHelper().decodeToken(localStorage.getItem('token')))
-
-    this.userService.getUser(this.userId)
-      .subscribe(userAuth => this.userAuth = userAuth);
   }
 
 

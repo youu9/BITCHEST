@@ -14,7 +14,5 @@ class Transaction extends Model
         return $this->belongsTo('App\User');
     }
     
-    public function quotation(){
-        return $this->hasOne('App\Quotation');
-    }
+    
 }

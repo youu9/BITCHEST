@@ -24,10 +24,18 @@ import { WalletComponent } from './wallet/wallet.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import {ClientAuthGuard} from "./services/client-auth-guard.service";
 import { CurrencyInfoComponent } from './currency-info/currency-info.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ClientComponent } from './client/client.component';
 
 const appRoutes: Routes = [
-  {path: '', component: HomeComponent,
-    canActivate: [AuthGuard, ClientAuthGuard]
+  {path: 'dashboard', component: HomeComponent,
+    canActivate: [AuthGuard]//AdminAuthGuard
+  },
+  {path: 'profile', component: ProfileComponent,
+    canActivate: [AuthGuard]
+  },
+  {path: 'client', component: ClientComponent,
+    canActivate: [AuthGuard, AdminAuthGuard]
   },
   {path: 'admin', component: AdminComponent,
     canActivate: [AuthGuard, AdminAuthGuard
@@ -47,11 +55,9 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard, ClientAuthGuard]
   },
   {path: 'no-access', component: NoAccessComponent},
+  {path: '',  redirectTo: '/dashboard', pathMatch: 'full'},
   //{path: 'notfound', component: NotFoundComponent}
-  {path: 'dashboard', component: LineChartComponent,
-    canActivate: [AuthGuard, //AdminAuthGuard
-    ]
-  }
+
 ];
 
 @NgModule({
@@ -68,6 +74,8 @@ const appRoutes: Routes = [
     WalletComponent,
     TransactionComponent,
     CurrencyInfoComponent,
+    ProfileComponent,
+    ClientComponent,
   ],
   imports: [
     BrowserModule,

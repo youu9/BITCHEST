@@ -14,7 +14,12 @@ class CurrencyController extends Controller
         $currencies = Currency::all();
         $date = new Carbon();
         foreach($currencies as $currency){
+            
             $currency->today_quotation = $currency->quotation($date->format('Y-m-d'))[0];
+            
+            $yesterday_quotation = $currency->quotation($date->addDays(-1)->format('Y-m-d'))[0];
+            
+            $currency->today_quotation->diff = $currency->today_quotation->rate - $yesterday_quotation->rate;
         }
         return response()->json($currencies);
     }
