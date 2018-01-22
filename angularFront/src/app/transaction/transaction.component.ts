@@ -23,12 +23,19 @@ export class TransactionComponent implements OnInit {
 
     this.userService.getCurrencies()
       .subscribe(currencies => this.currencies = currencies);
+
   }
 
   buy(items){
     console.log(items);
     this.userService.buy(items)
       .subscribe( res => this.res = res );
+  }
+
+  sell(id){
+    console.log(id);
+    this.userService.sell(id)
+      .subscribe(res => this.res = res);
   }
 
 }

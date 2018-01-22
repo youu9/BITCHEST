@@ -75,5 +75,11 @@ export class UsersService {
 
   buy(items){
     return this.http.post('bitchest/v1/buy/currency/' + items.currencyId, {'quantity': parseInt(items.quantity)}, this.option)
+      .map(response => response.json());
+  }
+
+  sell(id){
+    return this.http.post('bitchest/v1/sell/transaction/' + id, this.option)
+      .map(response=> response.json());
   }
 }
