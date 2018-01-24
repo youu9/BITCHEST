@@ -48,6 +48,7 @@ export class LoginComponent {
   signIn(credentials) {
     this.authService.login(credentials)
       .subscribe(result => {
+        
         if (result.success && localStorage.getItem('token')) {
           let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
           this.router.navigate([returnUrl || '/']);

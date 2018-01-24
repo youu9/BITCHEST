@@ -22,57 +22,6 @@ Welcome to the generated API reference.
 #Authentification
 
 authentification endpoint
-<!-- START_8ae5d428da27b2b014dc767c2f19a813 -->
-## Register
-
-Request to register a user
-
-> Example request:
-
-```bash
-curl -X POST "http://localhost/api/v1/register" \
--H "Accept: application/json" \
-    -d "name"="dolor" \
-    -d "email"="mwilkinson@example.com" \
-    -d "password"="dolor" \
-
-```
-
-```javascript
-var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "http://localhost/api/v1/register",
-    "method": "POST",
-    "data": {
-        "name": "dolor",
-        "email": "mwilkinson@example.com",
-        "password": "dolor"
-},
-    "headers": {
-        "accept": "application/json"
-    }
-}
-
-$.ajax(settings).done(function (response) {
-    console.log(response);
-});
-```
-
-
-### HTTP Request
-`POST api/v1/register`
-
-#### Parameters
-
-Parameter | Type | Status | Description
---------- | ------- | ------- | ------- | -----------
-    name | string |  required  | Maximum: `255`
-    email | email |  required  | Maximum: `255`
-    password | string |  required  | 
-
-<!-- END_8ae5d428da27b2b014dc767c2f19a813 -->
-
 <!-- START_8c0e48cd8efa861b308fc45872ff0837 -->
 ## Login
 
@@ -121,15 +70,18 @@ Parameter | Type | Status | Description
 
 <!-- END_8c0e48cd8efa861b308fc45872ff0837 -->
 
-<!-- START_394d402f1e299237fa88b4466e18226b -->
-## Logout
+#Currency
 
-Request POST, logout user with token
+currency endpoint
+<!-- START_cab5f30fb79978152ecbd3f121f1d9af -->
+## Currencies
+
+Return a list of currencies with the latest quotation
 
 > Example request:
 
 ```bash
-curl -X GET "http://localhost/api/v1/logout" \
+curl -X GET "http://localhost/api/v1/currencies" \
 -H "Accept: application/json"
 ```
 
@@ -137,7 +89,210 @@ curl -X GET "http://localhost/api/v1/logout" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/v1/logout",
+    "url": "http://localhost/api/v1/currencies",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+> Example response:
+
+```json
+[
+    {
+        "id": 1,
+        "name": "Bitcoin",
+        "symbol": "BTC",
+        "created_at": null,
+        "updated_at": null,
+        "today_quotation": {
+            "id": 1,
+            "date": "2018-01-24",
+            "rate": 71,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10",
+            "diff": 5.28
+        }
+    },
+    {
+        "id": 2,
+        "name": "Ethereum",
+        "symbol": "ETH",
+        "created_at": null,
+        "updated_at": null,
+        "today_quotation": {
+            "id": 31,
+            "date": "2018-01-24",
+            "rate": 78,
+            "currency_id": 2,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10",
+            "diff": -4.14
+        }
+    },
+    {
+        "id": 3,
+        "name": "Ripple",
+        "symbol": "XRP",
+        "created_at": null,
+        "updated_at": null,
+        "today_quotation": {
+            "id": 61,
+            "date": "2018-01-24",
+            "rate": 86,
+            "currency_id": 3,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10",
+            "diff": 1.01
+        }
+    },
+    {
+        "id": 4,
+        "name": "Bitcoin Cash",
+        "symbol": "BCH",
+        "created_at": null,
+        "updated_at": null,
+        "today_quotation": {
+            "id": 91,
+            "date": "2018-01-24",
+            "rate": 74,
+            "currency_id": 4,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10",
+            "diff": -4.16
+        }
+    },
+    {
+        "id": 5,
+        "name": "Cardano",
+        "symbol": "ADA",
+        "created_at": null,
+        "updated_at": null,
+        "today_quotation": {
+            "id": 121,
+            "date": "2018-01-24",
+            "rate": 74,
+            "currency_id": 5,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10",
+            "diff": -4.02
+        }
+    },
+    {
+        "id": 6,
+        "name": "Litecoin",
+        "symbol": "LTC",
+        "created_at": null,
+        "updated_at": null,
+        "today_quotation": {
+            "id": 151,
+            "date": "2018-01-24",
+            "rate": 82,
+            "currency_id": 6,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10",
+            "diff": -6.6
+        }
+    },
+    {
+        "id": 7,
+        "name": "NEM",
+        "symbol": "XEM",
+        "created_at": null,
+        "updated_at": null,
+        "today_quotation": {
+            "id": 181,
+            "date": "2018-01-24",
+            "rate": 80,
+            "currency_id": 7,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10",
+            "diff": 3.9
+        }
+    },
+    {
+        "id": 8,
+        "name": "Stellar",
+        "symbol": "XLM",
+        "created_at": null,
+        "updated_at": null,
+        "today_quotation": {
+            "id": 211,
+            "date": "2018-01-24",
+            "rate": 85,
+            "currency_id": 8,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10",
+            "diff": -11.4
+        }
+    },
+    {
+        "id": 9,
+        "name": "IOTA",
+        "symbol": "IOT",
+        "created_at": null,
+        "updated_at": null,
+        "today_quotation": {
+            "id": 241,
+            "date": "2018-01-24",
+            "rate": 74,
+            "currency_id": 9,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10",
+            "diff": 0.73
+        }
+    },
+    {
+        "id": 10,
+        "name": "DASH",
+        "symbol": "DASH",
+        "created_at": null,
+        "updated_at": null,
+        "today_quotation": {
+            "id": 271,
+            "date": "2018-01-24",
+            "rate": 73,
+            "currency_id": 10,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10",
+            "diff": -2.88
+        }
+    }
+]
+```
+
+### HTTP Request
+`GET api/v1/currencies`
+
+`HEAD api/v1/currencies`
+
+
+<!-- END_cab5f30fb79978152ecbd3f121f1d9af -->
+
+<!-- START_f64c8d441ecee2166a729973f7b27767 -->
+## Currency
+
+Return a specific currency with quotations 30 days before
+
+> Example request:
+
+```bash
+curl -X GET "http://localhost/api/v1/currency/{id}" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://localhost/api/v1/currency/{id}",
     "method": "GET",
     "headers": {
         "accept": "application/json"
@@ -153,405 +308,520 @@ $.ajax(settings).done(function (response) {
 
 ```json
 {
-    "message": "Token not provided",
-    "exception": "Symfony\\Component\\HttpKernel\\Exception\\UnauthorizedHttpException",
-    "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/tymon\/jwt-auth\/src\/Http\/Middleware\/BaseMiddleware.php",
-    "line": 52,
-    "trace": [
+    "currency": {
+        "id": 1,
+        "name": "Bitcoin",
+        "symbol": "BTC",
+        "created_at": null,
+        "updated_at": null,
+        "quotations": [
+            {
+                "id": 1,
+                "date": "2018-01-24",
+                "rate": 71,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 2,
+                "date": "2018-01-23",
+                "rate": 65.72,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 3,
+                "date": "2018-01-22",
+                "rate": 72.32,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 4,
+                "date": "2018-01-21",
+                "rate": 78.7,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 5,
+                "date": "2018-01-20",
+                "rate": 72.1,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 6,
+                "date": "2018-01-19",
+                "rate": 75.4,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 7,
+                "date": "2018-01-18",
+                "rate": 68.36,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 8,
+                "date": "2018-01-17",
+                "rate": 71.66,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 9,
+                "date": "2018-01-16",
+                "rate": 78.7,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 10,
+                "date": "2018-01-15",
+                "rate": 73.2,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 11,
+                "date": "2018-01-14",
+                "rate": 63.3,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 12,
+                "date": "2018-01-13",
+                "rate": 78.7,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 13,
+                "date": "2018-01-12",
+                "rate": 72.32,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 14,
+                "date": "2018-01-11",
+                "rate": 78.7,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 15,
+                "date": "2018-01-10",
+                "rate": 78.7,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 16,
+                "date": "2018-01-09",
+                "rate": 72.32,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 17,
+                "date": "2018-01-08",
+                "rate": 71.66,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 18,
+                "date": "2018-01-07",
+                "rate": 60,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 19,
+                "date": "2018-01-06",
+                "rate": 69.02,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 20,
+                "date": "2018-01-05",
+                "rate": 78.7,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 21,
+                "date": "2018-01-04",
+                "rate": 66.38,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 22,
+                "date": "2018-01-03",
+                "rate": 76.28,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 23,
+                "date": "2018-01-02",
+                "rate": 78.7,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 24,
+                "date": "2018-01-01",
+                "rate": 72.1,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 25,
+                "date": "2017-12-31",
+                "rate": 70.34,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 26,
+                "date": "2017-12-30",
+                "rate": 79.8,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 27,
+                "date": "2017-12-29",
+                "rate": 65.5,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 28,
+                "date": "2017-12-28",
+                "rate": 64.4,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 29,
+                "date": "2017-12-27",
+                "rate": 72.32,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            },
+            {
+                "id": 30,
+                "date": "2017-12-26",
+                "rate": 66.38,
+                "currency_id": 1,
+                "created_at": "2018-01-24 09:47:10",
+                "updated_at": "2018-01-24 09:47:10"
+            }
+        ]
+    },
+    "quotations": [
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/tymon\/jwt-auth\/src\/Http\/Middleware\/BaseMiddleware.php",
-            "line": 67,
-            "function": "checkForToken",
-            "class": "Tymon\\JWTAuth\\Http\\Middleware\\BaseMiddleware",
-            "type": "->"
+            "id": 1,
+            "date": "2018-01-24",
+            "rate": 71,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/tymon\/jwt-auth\/src\/Http\/Middleware\/Authenticate.php",
-            "line": 30,
-            "function": "authenticate",
-            "class": "Tymon\\JWTAuth\\Http\\Middleware\\BaseMiddleware",
-            "type": "->"
+            "id": 2,
+            "date": "2018-01-23",
+            "rate": 65.72,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Tymon\\JWTAuth\\Http\\Middleware\\Authenticate",
-            "type": "->"
+            "id": 3,
+            "date": "2018-01-22",
+            "rate": 72.32,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "id": 4,
+            "date": "2018-01-21",
+            "rate": 78.7,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Middleware\/SubstituteBindings.php",
-            "line": 41,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
+            "id": 5,
+            "date": "2018-01-20",
+            "rate": 72.1,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Routing\\Middleware\\SubstituteBindings",
-            "type": "->"
+            "id": 6,
+            "date": "2018-01-19",
+            "rate": 75.4,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "id": 7,
+            "date": "2018-01-18",
+            "rate": 68.36,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Middleware\/ThrottleRequests.php",
-            "line": 57,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
+            "id": 8,
+            "date": "2018-01-17",
+            "rate": 71.66,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-            "type": "->"
+            "id": 9,
+            "date": "2018-01-16",
+            "rate": 78.7,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "id": 10,
+            "date": "2018-01-15",
+            "rate": 73.2,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 102,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
+            "id": 11,
+            "date": "2018-01-14",
+            "rate": 63.3,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php",
-            "line": 660,
-            "function": "then",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "id": 12,
+            "date": "2018-01-13",
+            "rate": 78.7,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php",
-            "line": 635,
-            "function": "runRouteWithinStack",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "id": 13,
+            "date": "2018-01-12",
+            "rate": 72.32,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php",
-            "line": 601,
-            "function": "runRoute",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "id": 14,
+            "date": "2018-01-11",
+            "rate": 78.7,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php",
-            "line": 590,
-            "function": "dispatchToRoute",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "id": 15,
+            "date": "2018-01-10",
+            "rate": 78.7,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Kernel.php",
-            "line": 176,
-            "function": "dispatch",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "id": 16,
+            "date": "2018-01-09",
+            "rate": 72.32,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 30,
-            "function": "Illuminate\\Foundation\\Http\\{closure}",
-            "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
+            "id": 17,
+            "date": "2018-01-08",
+            "rate": 71.66,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/fideloper\/proxy\/src\/TrustProxies.php",
-            "line": 56,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
+            "id": 18,
+            "date": "2018-01-07",
+            "rate": 60,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Fideloper\\Proxy\\TrustProxies",
-            "type": "->"
+            "id": 19,
+            "date": "2018-01-06",
+            "rate": 69.02,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "id": 20,
+            "date": "2018-01-05",
+            "rate": 78.7,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php",
-            "line": 30,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
+            "id": 21,
+            "date": "2018-01-04",
+            "rate": 66.38,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "->"
+            "id": 22,
+            "date": "2018-01-03",
+            "rate": 76.28,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "id": 23,
+            "date": "2018-01-02",
+            "rate": 78.7,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php",
-            "line": 30,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
+            "id": 24,
+            "date": "2018-01-01",
+            "rate": 72.1,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "->"
+            "id": 25,
+            "date": "2017-12-31",
+            "rate": 70.34,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "id": 26,
+            "date": "2017-12-30",
+            "rate": 79.8,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/ValidatePostSize.php",
-            "line": 27,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
+            "id": 27,
+            "date": "2017-12-29",
+            "rate": 65.5,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
-            "type": "->"
+            "id": 28,
+            "date": "2017-12-28",
+            "rate": 64.4,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "id": 29,
+            "date": "2017-12-27",
+            "rate": 72.32,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         },
         {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/CheckForMaintenanceMode.php",
-            "line": 46,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 102,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Kernel.php",
-            "line": 151,
-            "function": "then",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Kernel.php",
-            "line": 116,
-            "function": "sendRequestThroughRouter",
-            "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Mpociot\/ApiDoc\/Generators\/LaravelGenerator.php",
-            "line": 116,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Mpociot\/ApiDoc\/Generators\/AbstractGenerator.php",
-            "line": 98,
-            "function": "callRoute",
-            "class": "Mpociot\\ApiDoc\\Generators\\LaravelGenerator",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Mpociot\/ApiDoc\/Generators\/LaravelGenerator.php",
-            "line": 58,
-            "function": "getRouteResponse",
-            "class": "Mpociot\\ApiDoc\\Generators\\AbstractGenerator",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Mpociot\/ApiDoc\/Commands\/GenerateDocumentation.php",
-            "line": 261,
-            "function": "processRoute",
-            "class": "Mpociot\\ApiDoc\\Generators\\LaravelGenerator",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Mpociot\/ApiDoc\/Commands\/GenerateDocumentation.php",
-            "line": 83,
-            "function": "processLaravelRoutes",
-            "class": "Mpociot\\ApiDoc\\Commands\\GenerateDocumentation",
-            "type": "->"
-        },
-        {
-            "function": "handle",
-            "class": "Mpociot\\ApiDoc\\Commands\\GenerateDocumentation",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php",
-            "line": 29,
-            "function": "call_user_func_array"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php",
-            "line": 87,
-            "function": "Illuminate\\Container\\{closure}",
-            "class": "Illuminate\\Container\\BoundMethod",
-            "type": "::"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php",
-            "line": 31,
-            "function": "callBoundMethod",
-            "class": "Illuminate\\Container\\BoundMethod",
-            "type": "::"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/Container.php",
-            "line": 549,
-            "function": "call",
-            "class": "Illuminate\\Container\\BoundMethod",
-            "type": "::"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Command.php",
-            "line": 183,
-            "function": "call",
-            "class": "Illuminate\\Container\\Container",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/symfony\/console\/Command\/Command.php",
-            "line": 252,
-            "function": "execute",
-            "class": "Illuminate\\Console\\Command",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Command.php",
-            "line": 170,
-            "function": "run",
-            "class": "Symfony\\Component\\Console\\Command\\Command",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/symfony\/console\/Application.php",
-            "line": 938,
-            "function": "run",
-            "class": "Illuminate\\Console\\Command",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/symfony\/console\/Application.php",
-            "line": 240,
-            "function": "doRunCommand",
-            "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/symfony\/console\/Application.php",
-            "line": 148,
-            "function": "doRun",
-            "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Application.php",
-            "line": 88,
-            "function": "run",
-            "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Console\/Kernel.php",
-            "line": 121,
-            "function": "run",
-            "class": "Illuminate\\Console\\Application",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/artisan",
-            "line": 37,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Console\\Kernel",
-            "type": "->"
+            "id": 30,
+            "date": "2017-12-26",
+            "rate": 66.38,
+            "currency_id": 1,
+            "created_at": "2018-01-24 09:47:10",
+            "updated_at": "2018-01-24 09:47:10"
         }
     ]
 }
 ```
 
 ### HTTP Request
-`GET api/v1/logout`
+`GET api/v1/currency/{id}`
 
-`HEAD api/v1/logout`
+`HEAD api/v1/currency/{id}`
 
 
-<!-- END_394d402f1e299237fa88b4466e18226b -->
+<!-- END_f64c8d441ecee2166a729973f7b27767 -->
 
-#general
-<!-- START_b2892eb191cd19c0a6f1aae56ba43db4 -->
-## Display a listing of the resource.
+#Transaction
+
+transaction endpoint
+<!-- START_3937a0eb453886e83e0c8f26c305ce8d -->
+## List (Currency)
+
+Return all transactions of an users by currency
 
 > Example request:
 
 ```bash
-curl -X GET "http://localhost/api/v1/user" \
+curl -X GET "http://localhost/api/v1/currency/{id}/transactions" \
 -H "Accept: application/json"
 ```
 
@@ -559,7 +829,7 @@ curl -X GET "http://localhost/api/v1/user" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/v1/user",
+    "url": "http://localhost/api/v1/currency/{id}/transactions",
     "method": "GET",
     "headers": {
         "accept": "application/json"
@@ -574,400 +844,286 @@ $.ajax(settings).done(function (response) {
 > Example response:
 
 ```json
-{
-    "message": "Token not provided",
-    "exception": "Symfony\\Component\\HttpKernel\\Exception\\UnauthorizedHttpException",
-    "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/tymon\/jwt-auth\/src\/Http\/Middleware\/BaseMiddleware.php",
-    "line": 52,
-    "trace": [
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/tymon\/jwt-auth\/src\/Http\/Middleware\/BaseMiddleware.php",
-            "line": 67,
-            "function": "checkForToken",
-            "class": "Tymon\\JWTAuth\\Http\\Middleware\\BaseMiddleware",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/tymon\/jwt-auth\/src\/Http\/Middleware\/Authenticate.php",
-            "line": 30,
-            "function": "authenticate",
-            "class": "Tymon\\JWTAuth\\Http\\Middleware\\BaseMiddleware",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Tymon\\JWTAuth\\Http\\Middleware\\Authenticate",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Middleware\/SubstituteBindings.php",
-            "line": 41,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Routing\\Middleware\\SubstituteBindings",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Middleware\/ThrottleRequests.php",
-            "line": 57,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 102,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php",
-            "line": 660,
-            "function": "then",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php",
-            "line": 635,
-            "function": "runRouteWithinStack",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php",
-            "line": 601,
-            "function": "runRoute",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php",
-            "line": 590,
-            "function": "dispatchToRoute",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Kernel.php",
-            "line": 176,
-            "function": "dispatch",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 30,
-            "function": "Illuminate\\Foundation\\Http\\{closure}",
-            "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/fideloper\/proxy\/src\/TrustProxies.php",
-            "line": 56,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Fideloper\\Proxy\\TrustProxies",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php",
-            "line": 30,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php",
-            "line": 30,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/ValidatePostSize.php",
-            "line": 27,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/CheckForMaintenanceMode.php",
-            "line": 46,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 102,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Kernel.php",
-            "line": 151,
-            "function": "then",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Kernel.php",
-            "line": 116,
-            "function": "sendRequestThroughRouter",
-            "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Mpociot\/ApiDoc\/Generators\/LaravelGenerator.php",
-            "line": 116,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Mpociot\/ApiDoc\/Generators\/AbstractGenerator.php",
-            "line": 98,
-            "function": "callRoute",
-            "class": "Mpociot\\ApiDoc\\Generators\\LaravelGenerator",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Mpociot\/ApiDoc\/Generators\/LaravelGenerator.php",
-            "line": 58,
-            "function": "getRouteResponse",
-            "class": "Mpociot\\ApiDoc\\Generators\\AbstractGenerator",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Mpociot\/ApiDoc\/Commands\/GenerateDocumentation.php",
-            "line": 261,
-            "function": "processRoute",
-            "class": "Mpociot\\ApiDoc\\Generators\\LaravelGenerator",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Mpociot\/ApiDoc\/Commands\/GenerateDocumentation.php",
-            "line": 83,
-            "function": "processLaravelRoutes",
-            "class": "Mpociot\\ApiDoc\\Commands\\GenerateDocumentation",
-            "type": "->"
-        },
-        {
-            "function": "handle",
-            "class": "Mpociot\\ApiDoc\\Commands\\GenerateDocumentation",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php",
-            "line": 29,
-            "function": "call_user_func_array"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php",
-            "line": 87,
-            "function": "Illuminate\\Container\\{closure}",
-            "class": "Illuminate\\Container\\BoundMethod",
-            "type": "::"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php",
-            "line": 31,
-            "function": "callBoundMethod",
-            "class": "Illuminate\\Container\\BoundMethod",
-            "type": "::"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/Container.php",
-            "line": 549,
-            "function": "call",
-            "class": "Illuminate\\Container\\BoundMethod",
-            "type": "::"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Command.php",
-            "line": 183,
-            "function": "call",
-            "class": "Illuminate\\Container\\Container",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/symfony\/console\/Command\/Command.php",
-            "line": 252,
-            "function": "execute",
-            "class": "Illuminate\\Console\\Command",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Command.php",
-            "line": 170,
-            "function": "run",
-            "class": "Symfony\\Component\\Console\\Command\\Command",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/symfony\/console\/Application.php",
-            "line": 938,
-            "function": "run",
-            "class": "Illuminate\\Console\\Command",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/symfony\/console\/Application.php",
-            "line": 240,
-            "function": "doRunCommand",
-            "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/symfony\/console\/Application.php",
-            "line": 148,
-            "function": "doRun",
-            "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Application.php",
-            "line": 88,
-            "function": "run",
-            "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Console\/Kernel.php",
-            "line": 121,
-            "function": "run",
-            "class": "Illuminate\\Console\\Application",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/artisan",
-            "line": 37,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Console\\Kernel",
-            "type": "->"
-        }
-    ]
-}
+[
+    {
+        "id": 43,
+        "quantity": 54,
+        "date": "2018-01-07",
+        "state": "own",
+        "user_id": 12,
+        "currency_id": 1,
+        "quotation_id": 18,
+        "created_at": "2018-01-24 09:47:11",
+        "updated_at": "2018-01-24 09:47:11",
+        "name": "Bitcoin",
+        "rate": 60,
+        "diff": 11
+    }
+]
 ```
 
 ### HTTP Request
-`GET api/v1/user`
+`GET api/v1/currency/{id}/transactions`
 
-`HEAD api/v1/user`
+`HEAD api/v1/currency/{id}/transactions`
 
 
-<!-- END_b2892eb191cd19c0a6f1aae56ba43db4 -->
+<!-- END_3937a0eb453886e83e0c8f26c305ce8d -->
+
+<!-- START_739dd7a62441def2c98078f39bb39e8f -->
+## List (Own or Sold)
+
+Return all transactions of an users by state 'own' or 'sold'
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost/api/v1/transactions" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://localhost/api/v1/transactions",
+    "method": "POST",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+
+### HTTP Request
+`POST api/v1/transactions`
+
+
+<!-- END_739dd7a62441def2c98078f39bb39e8f -->
+
+<!-- START_9f563e4a289d629953062dab86073622 -->
+## Sell
+
+Update a transaction in state 'sold'
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost/api/v1/sell/transaction/{id}" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://localhost/api/v1/sell/transaction/{id}",
+    "method": "POST",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+
+### HTTP Request
+`POST api/v1/sell/transaction/{id}`
+
+
+<!-- END_9f563e4a289d629953062dab86073622 -->
+
+<!-- START_60e6c9b5f545ac07f4a4d69de22c28c6 -->
+## Buy
+
+Create a transaction in state 'own'
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost/api/v1/buy/currency/{id}" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://localhost/api/v1/buy/currency/{id}",
+    "method": "POST",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+
+### HTTP Request
+`POST api/v1/buy/currency/{id}`
+
+
+<!-- END_60e6c9b5f545ac07f4a4d69de22c28c6 -->
+
+#User
+
+user endpoint
+<!-- START_080f3ecebb7bcc2f93284b8f5ae1ac3b -->
+## Users
+
+Return a list of users
+
+> Example request:
+
+```bash
+curl -X GET "http://localhost/api/v1/users" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://localhost/api/v1/users",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+> Example response:
+
+```json
+[
+    {
+        "id": 2,
+        "name": "Virgil Greenholt",
+        "email": "alvah.brown@example.org",
+        "is_verified": 1,
+        "role": "Client",
+        "created_at": "2018-01-24 09:47:10",
+        "updated_at": "2018-01-24 09:47:10"
+    },
+    {
+        "id": 3,
+        "name": "Theresa McKenzie",
+        "email": "america96@example.com",
+        "is_verified": 1,
+        "role": "Client",
+        "created_at": "2018-01-24 09:47:10",
+        "updated_at": "2018-01-24 09:47:10"
+    },
+    {
+        "id": 4,
+        "name": "Ms. Maritza Wuckert PhD",
+        "email": "shana86@example.net",
+        "is_verified": 1,
+        "role": "Client",
+        "created_at": "2018-01-24 09:47:10",
+        "updated_at": "2018-01-24 09:47:10"
+    },
+    {
+        "id": 5,
+        "name": "Alfred Bernhard",
+        "email": "abbott.laron@example.net",
+        "is_verified": 1,
+        "role": "Client",
+        "created_at": "2018-01-24 09:47:10",
+        "updated_at": "2018-01-24 09:47:10"
+    },
+    {
+        "id": 6,
+        "name": "Mathilde Greenfelder Jr.",
+        "email": "krista85@example.org",
+        "is_verified": 1,
+        "role": "Client",
+        "created_at": "2018-01-24 09:47:10",
+        "updated_at": "2018-01-24 09:47:10"
+    },
+    {
+        "id": 7,
+        "name": "Lane Waelchi",
+        "email": "jody.rice@example.net",
+        "is_verified": 1,
+        "role": "Client",
+        "created_at": "2018-01-24 09:47:10",
+        "updated_at": "2018-01-24 09:47:10"
+    },
+    {
+        "id": 8,
+        "name": "Tyshawn Schmeler",
+        "email": "heidi.erdman@example.com",
+        "is_verified": 1,
+        "role": "Client",
+        "created_at": "2018-01-24 09:47:10",
+        "updated_at": "2018-01-24 09:47:10"
+    },
+    {
+        "id": 9,
+        "name": "Aylin Prohaska",
+        "email": "carmel.bode@example.net",
+        "is_verified": 1,
+        "role": "Client",
+        "created_at": "2018-01-24 09:47:10",
+        "updated_at": "2018-01-24 09:47:10"
+    },
+    {
+        "id": 10,
+        "name": "Nash Kshlerin",
+        "email": "mittie.ebert@example.net",
+        "is_verified": 1,
+        "role": "Client",
+        "created_at": "2018-01-24 09:47:10",
+        "updated_at": "2018-01-24 09:47:10"
+    },
+    {
+        "id": 11,
+        "name": "Jerome",
+        "email": "jerome@bitchest.com",
+        "is_verified": 1,
+        "role": "Admin",
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 12,
+        "name": "Eric",
+        "email": "eric@eric.fr",
+        "is_verified": 1,
+        "role": "Client",
+        "created_at": null,
+        "updated_at": null
+    }
+]
+```
+
+### HTTP Request
+`GET api/v1/users`
+
+`HEAD api/v1/users`
+
+
+<!-- END_080f3ecebb7bcc2f93284b8f5ae1ac3b -->
 
 <!-- START_62cc83659a855b398818615e9c823ca6 -->
-## Display the specified resource.
+## User
+
+Return a specific user
 
 > Example request:
 
@@ -995,388 +1151,7 @@ $.ajax(settings).done(function (response) {
 > Example response:
 
 ```json
-{
-    "message": "Token not provided",
-    "exception": "Symfony\\Component\\HttpKernel\\Exception\\UnauthorizedHttpException",
-    "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/tymon\/jwt-auth\/src\/Http\/Middleware\/BaseMiddleware.php",
-    "line": 52,
-    "trace": [
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/tymon\/jwt-auth\/src\/Http\/Middleware\/BaseMiddleware.php",
-            "line": 67,
-            "function": "checkForToken",
-            "class": "Tymon\\JWTAuth\\Http\\Middleware\\BaseMiddleware",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/tymon\/jwt-auth\/src\/Http\/Middleware\/Authenticate.php",
-            "line": 30,
-            "function": "authenticate",
-            "class": "Tymon\\JWTAuth\\Http\\Middleware\\BaseMiddleware",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Tymon\\JWTAuth\\Http\\Middleware\\Authenticate",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Middleware\/SubstituteBindings.php",
-            "line": 41,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Routing\\Middleware\\SubstituteBindings",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Middleware\/ThrottleRequests.php",
-            "line": 57,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 102,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php",
-            "line": 660,
-            "function": "then",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php",
-            "line": 635,
-            "function": "runRouteWithinStack",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php",
-            "line": 601,
-            "function": "runRoute",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php",
-            "line": 590,
-            "function": "dispatchToRoute",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Kernel.php",
-            "line": 176,
-            "function": "dispatch",
-            "class": "Illuminate\\Routing\\Router",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 30,
-            "function": "Illuminate\\Foundation\\Http\\{closure}",
-            "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/fideloper\/proxy\/src\/TrustProxies.php",
-            "line": 56,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Fideloper\\Proxy\\TrustProxies",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php",
-            "line": 30,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php",
-            "line": 30,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/ValidatePostSize.php",
-            "line": 27,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/CheckForMaintenanceMode.php",
-            "line": 46,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 149,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Pipeline.php",
-            "line": 53,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 102,
-            "function": "Illuminate\\Routing\\{closure}",
-            "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Kernel.php",
-            "line": 151,
-            "function": "then",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Kernel.php",
-            "line": 116,
-            "function": "sendRequestThroughRouter",
-            "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Mpociot\/ApiDoc\/Generators\/LaravelGenerator.php",
-            "line": 116,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Mpociot\/ApiDoc\/Generators\/AbstractGenerator.php",
-            "line": 98,
-            "function": "callRoute",
-            "class": "Mpociot\\ApiDoc\\Generators\\LaravelGenerator",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Mpociot\/ApiDoc\/Generators\/LaravelGenerator.php",
-            "line": 58,
-            "function": "getRouteResponse",
-            "class": "Mpociot\\ApiDoc\\Generators\\AbstractGenerator",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Mpociot\/ApiDoc\/Commands\/GenerateDocumentation.php",
-            "line": 261,
-            "function": "processRoute",
-            "class": "Mpociot\\ApiDoc\\Generators\\LaravelGenerator",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Mpociot\/ApiDoc\/Commands\/GenerateDocumentation.php",
-            "line": 83,
-            "function": "processLaravelRoutes",
-            "class": "Mpociot\\ApiDoc\\Commands\\GenerateDocumentation",
-            "type": "->"
-        },
-        {
-            "function": "handle",
-            "class": "Mpociot\\ApiDoc\\Commands\\GenerateDocumentation",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php",
-            "line": 29,
-            "function": "call_user_func_array"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php",
-            "line": 87,
-            "function": "Illuminate\\Container\\{closure}",
-            "class": "Illuminate\\Container\\BoundMethod",
-            "type": "::"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php",
-            "line": 31,
-            "function": "callBoundMethod",
-            "class": "Illuminate\\Container\\BoundMethod",
-            "type": "::"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/Container.php",
-            "line": 549,
-            "function": "call",
-            "class": "Illuminate\\Container\\BoundMethod",
-            "type": "::"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Command.php",
-            "line": 183,
-            "function": "call",
-            "class": "Illuminate\\Container\\Container",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/symfony\/console\/Command\/Command.php",
-            "line": 252,
-            "function": "execute",
-            "class": "Illuminate\\Console\\Command",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Command.php",
-            "line": 170,
-            "function": "run",
-            "class": "Symfony\\Component\\Console\\Command\\Command",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/symfony\/console\/Application.php",
-            "line": 938,
-            "function": "run",
-            "class": "Illuminate\\Console\\Command",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/symfony\/console\/Application.php",
-            "line": 240,
-            "function": "doRunCommand",
-            "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/symfony\/console\/Application.php",
-            "line": 148,
-            "function": "doRun",
-            "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Application.php",
-            "line": 88,
-            "function": "run",
-            "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Console\/Kernel.php",
-            "line": 121,
-            "function": "run",
-            "class": "Illuminate\\Console\\Application",
-            "type": "->"
-        },
-        {
-            "file": "\/Users\/eric\/Coding\/dev\/BitChest\/artisan",
-            "line": 37,
-            "function": "handle",
-            "class": "Illuminate\\Foundation\\Console\\Kernel",
-            "type": "->"
-        }
-    ]
-}
+{}
 ```
 
 ### HTTP Request
@@ -1388,7 +1163,9 @@ $.ajax(settings).done(function (response) {
 <!-- END_62cc83659a855b398818615e9c823ca6 -->
 
 <!-- START_96b8840d06e94c53a87e83e9edfb44eb -->
-## Store a newly created resource in storage.
+## Store
+
+Add a user into database
 
 > Example request:
 
@@ -1421,7 +1198,9 @@ $.ajax(settings).done(function (response) {
 <!-- END_96b8840d06e94c53a87e83e9edfb44eb -->
 
 <!-- START_747abcc0459baa513a1a4b3a20695f65 -->
-## Update the specified resource in storage.
+## Update
+
+Update a user
 
 > Example request:
 
@@ -1454,7 +1233,9 @@ $.ajax(settings).done(function (response) {
 <!-- END_747abcc0459baa513a1a4b3a20695f65 -->
 
 <!-- START_f23e23e5a9b1d819cf366191ee8973b7 -->
-## Remove the specified resource from storage.
+## Delete
+
+Delete a user
 
 > Example request:
 
@@ -1485,4 +1266,88 @@ $.ajax(settings).done(function (response) {
 
 
 <!-- END_f23e23e5a9b1d819cf366191ee8973b7 -->
+
+<!-- START_fb02c31583fb6122fc260462e43c0dab -->
+## Wallet
+
+return the wallet of an user
+
+> Example request:
+
+```bash
+curl -X GET "http://localhost/api/v1/wallet" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://localhost/api/v1/wallet",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+> Example response:
+
+```json
+{
+    "success": true,
+    "wallet": {
+        "currencies": [
+            {
+                "id": 5,
+                "name": "Cardano",
+                "symbol": "ADA",
+                "quantity": 54,
+                "price": 3996
+            },
+            {
+                "id": 10,
+                "name": "DASH",
+                "symbol": "DASH",
+                "quantity": 39,
+                "price": 2847
+            },
+            {
+                "id": 9,
+                "name": "IOTA",
+                "symbol": "IOT",
+                "quantity": 28,
+                "price": 2072
+            },
+            {
+                "id": 7,
+                "name": "NEM",
+                "symbol": "XEM",
+                "quantity": 57,
+                "price": 4560
+            },
+            {
+                "id": 1,
+                "name": "Bitcoin",
+                "symbol": "BTC",
+                "quantity": 54,
+                "price": 3834
+            }
+        ],
+        "total": 9175.17
+    }
+}
+```
+
+### HTTP Request
+`GET api/v1/wallet`
+
+`HEAD api/v1/wallet`
+
+
+<!-- END_fb02c31583fb6122fc260462e43c0dab -->
 

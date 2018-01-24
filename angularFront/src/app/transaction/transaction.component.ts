@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {UsersService} from "../services/users/users.service";
 import {Router} from "@angular/router";
 import { FormArray } from '@angular/forms';
+import {AuthService} from '../services/auth.service';
+
 
 @Component({
   selector: 'app-transaction',
@@ -9,6 +11,7 @@ import { FormArray } from '@angular/forms';
   styleUrls: ['./transaction.component.css']
 })
 export class TransactionComponent implements OnInit {
+  
   userAuth:any[];
   userId: any;
   currencies: any[];
@@ -19,8 +22,12 @@ export class TransactionComponent implements OnInit {
   }
   successSell : boolean;
   successBuy: boolean;
+  errorBuy : boolean;
+  userWalletTotal: any;
+  
+  
 
-  constructor(private userService: UsersService, private route: Router) {
+  constructor(private userService: UsersService, public authService:AuthService, private route: Router) {
    }
 
   ngOnInit() {
@@ -35,7 +42,15 @@ export class TransactionComponent implements OnInit {
 
     this.userService.myBuy()
     .subscribe(myBuy => this.myBuy = myBuy);
+
+    if(this.authService.isClient()){
+      this.userService.getUserWallet()
+      .subscribe(userWallet => {
+        this.userWalletTotal = userWallet.wallet.total;
+      });
+    }
   }
+
 
   addPrice(id){
     
@@ -49,15 +64,26 @@ export class TransactionComponent implements OnInit {
   }
 
   buy(items){
-    this.userService.buy(items)
-      .subscribe((response: Response) => {
-          this.successBuy = true;
-          this.total = {
-            'price': '',
-            'quantity':'',
-          }
-          
-      });
+    if( (parseInt(this.total.price) * parseInt(this.total.quantity)) < this.userWalletTotal){
+      this.userService.buy(items)
+        .subscribe((response: Response) => {
+            this.successBuy = true;
+            this.total = {
+              'price': '',
+              'quantity':'',
+            }
+            if(this.authService.isClient()){
+              this.userService.getUserWallet()
+              .subscribe(userWallet => {
+                this.userService.walletSold = userWallet.wallet.total;
+                this.userWalletTotal = this.userService.walletSold;
+              });
+            }
+        });
+      }
+      else{
+        this.errorBuy = true;
+      }
   }
 
   sell(id){
@@ -72,7 +98,13 @@ export class TransactionComponent implements OnInit {
               break;
             }
           }
-          
+          if(this.authService.isClient()){
+            this.userService.getUserWallet()
+            .subscribe(userWallet => {
+              this.userService.walletSold = userWallet.wallet.total;
+              this.userWalletTotal = this.userService.walletSold;
+            });
+          }
           this.successSell = true;
         }
       });

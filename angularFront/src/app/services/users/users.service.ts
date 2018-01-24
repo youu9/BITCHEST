@@ -3,11 +3,12 @@ import {Http, Headers} from "@angular/http";
 import {Router} from "@angular/router";
 
 @Injectable()
-export class UsersService implements OnInit{
+export class UsersService{
 
   private headers;
   private option;
   private token;
+  public walletSold;
 
   /**
    * Constructor recupère le token en localStorage et lui ajoute la string 'Bearer' pour le mettre
@@ -20,6 +21,7 @@ export class UsersService implements OnInit{
    * */
   constructor(private http: Http,
               private route: Router) {
+    
     this.token = localStorage.getItem('token');
     this.headers = new Headers({
       'Content-Type': 'application/json',
@@ -28,14 +30,6 @@ export class UsersService implements OnInit{
     this.option = {headers: this.headers};
   }
 
-  ngOnInit() {
-    this.token = localStorage.getItem('token');
-    this.headers = new Headers({
-      'Content-Type': 'application/json',
-      Authorization: this.token
-    });
-    this.option = {headers: this.headers};
-  }
   /**
    * Envoie la requête GET a l'API (en format JSON) et y ajoute (this.option) pour l'auth.
    * récupère la réponse en JSON.

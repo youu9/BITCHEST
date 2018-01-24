@@ -13,7 +13,7 @@ import {UsersService} from "../services/users/users.service";
 export class HeaderComponent implements OnInit {
   public MenuItems: any[];
   public BrandMenu: any;
-  userWalletTotal;
+  userWalletTotal: any;
 
   isCollapsed = true;
 
@@ -23,15 +23,14 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.MenuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND);
     this.BrandMenu = ROUTES.filter(menuItem => menuItem.menuType === MenuType.BRAND)[0];
-
+    
     if(this.authService.isClient()){
       this.userService.getUserWallet()
       .subscribe(userWallet => {
-        this.userWalletTotal = userWallet.wallet.total;
+        this.userService.walletSold = userWallet.wallet.total;
       });
     }
-    
-
+   
   }
 
   public getMenuItemClasses(menuItem: any) {
