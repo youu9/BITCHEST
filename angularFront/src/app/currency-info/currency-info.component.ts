@@ -14,9 +14,9 @@ export class CurrencyInfoComponent implements OnInit {
   name: string;
   sub: any;
   currencyInfo: any = [];
-  currencyTransactions:any [];
+  currencyTransactions:{};
   currencyQuotations:any [];
-  
+  currencyTransactionAdded : Boolean;
 
   quotations= [];
   date= [];
@@ -26,7 +26,6 @@ export class CurrencyInfoComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.currencyTransactions);
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id']; // (+) converts string 'id' to a number
       this.name = params['name'];
@@ -39,8 +38,13 @@ export class CurrencyInfoComponent implements OnInit {
         });
 
       this.userService.getCurrencyTransaction(this.id)
-        .subscribe( currencyTransactions => this.currencyTransactions = currencyTransactions );
-
+        .subscribe( currencyTransactions => {
+           this.currencyTransactions = currencyTransactions 
+           if(currencyTransactions.length != 0){
+            this.currencyTransactionAdded = true;
+           }
+        });
+        
   }
 
   

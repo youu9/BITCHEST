@@ -33,7 +33,12 @@ export class HomeComponent implements OnInit {
    //console.log(new JwtHelper().decodeToken(localStorage.getItem('token')))
   }
   goToDetails(id, name){
-    this.route.navigate(['currency/info', id, name]);
+    if(this.authService.isClient()){
+      this.route.navigate(['currency/info', id, name]);
+    }else{
+      return false;
+    }
+    
   }
 
 }

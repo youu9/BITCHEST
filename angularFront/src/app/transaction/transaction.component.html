@@ -17,18 +17,20 @@
       <div class="form-group">
         <label for="currencyId">Crypto-monnaie</label>
         <select
+          (change)="addPrice(currencyId.value)"
           ngModel
           #currencyId="ngModel"
           name="currencyId"
           id="currencyId"
           class="form-control"
           required>
-          <option *ngFor="let currency of currencies"  value="{{currency?.id}}">{{currency?.name}} {{currency?.price}} €</option>
+          <option *ngFor="let currency of currencies"  value="{{currency?.id}}">{{currency?.name}} {{currency?.today_quotation.rate}} €</option>
         </select>
+        <p class='total' *ngIf='total'>Total : {{total.quantity * total.price}} €</p>
       </div>
       <button type="submit" class="btn btn-bc">Acheter</button>
     </form>
-    <p *ngIf='total'>{{total.quantity * total.price}} €</p>
+    
     <div *ngIf='successBuy' class="alert alert-success" role="alert">Acheté !</div>
   </div>
 

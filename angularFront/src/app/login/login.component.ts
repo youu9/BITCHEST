@@ -44,24 +44,11 @@ export class LoginComponent {
    * @version 1.0
    * */
 
-  // signIn(credentials) {
-  //   this.authService.login(credentials)
-  //     .subscribe(result => {
-  //       console.log(result);
-  //       if (result && this.authService.isAdmin()) {
-  //         let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-  //         this.router.navigate([returnUrl || '/']);
-  //       }
-  //       else
-  //         this.invalidLogin = true;
-  //     });
-  // }
 
   signIn(credentials) {
     this.authService.login(credentials)
       .subscribe(result => {
-        
-        if (result.success) {
+        if (result.success && localStorage.getItem('token')) {
           let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
           this.router.navigate([returnUrl || '/']);
         }

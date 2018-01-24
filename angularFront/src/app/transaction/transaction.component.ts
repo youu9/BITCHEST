@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UsersService} from "../services/users/users.service";
 import {Router} from "@angular/router";
+import { FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-transaction',
@@ -36,14 +37,26 @@ export class TransactionComponent implements OnInit {
     .subscribe(myBuy => this.myBuy = myBuy);
   }
 
-  addPrice(price){
-    this.total.price = price;
+  addPrice(id){
+    
+    for(let currency of this.currencies){
+      if(currency.id == id){
+        this.total.price = currency.today_quotation.rate;
+        break;
+      }
+    }
+    console.log(this.total);
   }
 
   buy(items){
     this.userService.buy(items)
       .subscribe((response: Response) => {
           this.successBuy = true;
+          this.total = {
+            'price': '',
+            'quantity':'',
+          }
+          
       });
   }
 
