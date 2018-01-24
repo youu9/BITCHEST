@@ -20,11 +20,7 @@ class TransactionController extends Controller
             return response()->json(['success'=> false, 'message'=> 'Vous êtes Admin']);
         }
     }
-    public function wallet(){
-        $user = JWTAuth::parseToken()->authenticate();
-
-        return response()->json(['success'=> true, 'wallet'=> $user->getWallet($user->id)]);
-    }
+    
 
     public function list($id){
         $user = JWTAuth::parseToken()->authenticate();

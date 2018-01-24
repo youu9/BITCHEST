@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import {Http, Headers} from "@angular/http";
 import {Router} from "@angular/router";
 
 @Injectable()
-export class UsersService {
+export class UsersService implements OnInit{
 
   private headers;
   private option;
@@ -28,7 +28,14 @@ export class UsersService {
     this.option = {headers: this.headers};
   }
 
-
+  ngOnInit() {
+    this.token = localStorage.getItem('token');
+    this.headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: this.token
+    });
+    this.option = {headers: this.headers};
+  }
   /**
    * Envoie la requête GET a l'API (en format JSON) et y ajoute (this.option) pour l'auth.
    * récupère la réponse en JSON.

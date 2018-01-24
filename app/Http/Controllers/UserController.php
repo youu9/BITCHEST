@@ -149,4 +149,10 @@ class UserController extends Controller
         
         return response()->json(['success'=> true, 'message'=> 'Utilisateur supprimé !'])->header('Content-Type', 'application/json');
     }
+
+    public function wallet(){
+        $user = JWTAuth::parseToken()->authenticate();
+
+        return response()->json(['success'=> true, 'wallet'=> $user->getWallet($user->id)]);
+    }
 }

@@ -38,7 +38,7 @@ Route::group(['prefix' => 'v1','middleware' => ['jwt.auth']], function() {
 
 
     // Client
-    Route::get('/wallet/', "TransactionController@wallet"); // porte feuille ?
+    Route::get('/wallet/', "UserController@wallet"); // porte feuille ?
     Route::get('/currency/{id}/transactions', "TransactionController@list"); // 
     Route::post('/transactions', "TransactionController@all"); // 
     
