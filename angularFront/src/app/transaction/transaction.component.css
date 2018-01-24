@@ -1,0 +1,13 @@
+#myCurrencySold tr td{
+    vertical-align: middle;
+}
+#buy-form{
+    margin:0;
+    padding:0;
+    margin-bottom:15px;
+}
+td a{
+    cursor: pointer;
+    color:#000;
+    font-weight:bold;
+}

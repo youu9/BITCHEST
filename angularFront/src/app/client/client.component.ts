@@ -16,10 +16,11 @@ export class ClientComponent implements OnInit {
   userAuth:any[];
   userId: any;
   successPost : Boolean;
-  userSelected: {
-  };
-  
+  userSelected: {};
+  isAdding : Boolean;
+  successAdding : Boolean;
   saveResponse: any;
+  successDelete : Boolean;
   showList:boolean = true;
   
     constructor(private userService: UsersService,
@@ -58,16 +59,43 @@ export class ClientComponent implements OnInit {
       this.userService.getUser(id)
         .subscribe(user =>{
           this.userSelected = user;
-    });
+      });
     }
-  
-    save(user, id){
-      console.log(user)
-    //console.log(this.userSelected)
-      this.userService.saveUser(user, id)
-        .subscribe( saveResponse => this.saveResponse = saveResponse);
-     this.route.navigate(['/admin']);
+    showPopup(){
+      this.isAdding = true;
     }
+    addUser(credentials){
+      this.userService.addUser(credentials)
+      .subscribe((response: Response) => {
+        let res:any = response;
+        if(res.success){
+          this.users.push(credentials);
+          this.isAdding = false;
+          this.successAdding = true;
+        }
+      });
+    }
+    deleteUser(id){
+      this.userService.deleteUser(id)
+      .subscribe((response: Response) => {
+        let res:any = response;
+        if(res.success){
+          for(let i = 0 ; i < this.users.length ; i++){
+            if(this.users[i].id === id){
+              this.users.splice(i, 1);
+            }
+          }
+          this.successDelete = true;
+        }
+      });
+    }
+    // save(user, id){
+    //   console.log(user)
+    // //console.log(this.userSelected)
+    //   this.userService.saveUser(user, id)
+    //     .subscribe( saveResponse => this.saveResponse = saveResponse);
+    //  this.route.navigate(['/admin']);
+    // }
 
     updateUser(credentials, id){
       this.userService.saveUser(credentials, id)
@@ -79,17 +107,17 @@ export class ClientComponent implements OnInit {
               user.name = credentials.name;
               user.email = credentials.email;
               user.role = credentials.role;
+              
               break;
             }
           }
-          console.log(this.users);
+          
+          this.userSelected = null;
           this.successPost = true;
         }
       });
     }
   
-    delete(id) {
-      //TODO
-    }
+  
 
 }

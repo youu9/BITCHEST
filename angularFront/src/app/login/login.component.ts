@@ -21,7 +21,7 @@ export class LoginComponent {
 
   constructor(private router: Router,
               public authService: AuthService,
-              private route: ActivatedRoute,) {
+              private route: ActivatedRoute) {
   }
 
 
@@ -44,14 +44,24 @@ export class LoginComponent {
    * @version 1.0
    * */
 
+  // signIn(credentials) {
+  //   this.authService.login(credentials)
+  //     .subscribe(result => {
+  //       console.log(result);
+  //       if (result && this.authService.isAdmin()) {
+  //         let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+  //         this.router.navigate([returnUrl || '/']);
+  //       }
+  //       else
+  //         this.invalidLogin = true;
+  //     });
+  // }
+
   signIn(credentials) {
     this.authService.login(credentials)
       .subscribe(result => {
-        if (result && this.authService.isAdmin()) {
-          let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-          this.router.navigate([returnUrl || '/admin']);
-        }
-        else if(result){
+        
+        if (result.success) {
           let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
           this.router.navigate([returnUrl || '/']);
         }

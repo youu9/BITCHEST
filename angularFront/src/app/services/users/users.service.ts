@@ -55,7 +55,14 @@ export class UsersService {
   saveUser(user, id){
     return this.http.post('bitchest/v1/user/' + id, user, this.option)
       .map(response => response.json());
-
+  }
+  addUser(user){
+    return this.http.post('bitchest/v1/user/', user, this.option)
+      .map(response => response.json());
+  }
+  deleteUser(id){
+    return this.http.delete('bitchest/v1/user/' + id, this.option)
+      .map(response => response.json());
   }
 
   getUserWallet(){
@@ -79,7 +86,7 @@ export class UsersService {
   }
 
   sell(id){
-    return this.http.post('bitchest/v1/sell/transaction/' + id, this.option)
+    return this.http.post('bitchest/v1/sell/transaction/' + id,{ }, this.option)
       .map(response=> response.json());
   }
 

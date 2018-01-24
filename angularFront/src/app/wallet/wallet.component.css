@@ -1,0 +1,9 @@
+td{
+    cursor: pointer;
+}
+
+td a{
+    cursor: pointer;
+    color:#000;
+    font-weight:bold;
+}

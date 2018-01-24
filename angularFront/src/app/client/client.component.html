@@ -1,79 +1,131 @@
-<div class="container">
-    <h2>Clients</h2>
+  <h1 class='page-header'>Clients</h1>
+  <h2>Liste des clients</h2>
+
+
+  <div *ngIf='successPost' class="alert alert-success" role="alert">Utilisateur mis à jour !</div>
+  <div *ngIf='successAdding' class="alert alert-success" role="alert">Utilisateur ajouté !</div>
+  <div *ngIf='successDelete' class="alert alert-success" role="alert">Utilisateur supprimé !</div>
+
+    
+  <div class="table-responsive">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>role</th>
+            <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{user.name}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.role}}</td>
+          <td> 
+            <button (click)="getUserInfo(user.id)" class="float-right btn  btn-bc">Modifier</button>
+            <button (click)="deleteUser(user.id)" class="float-right btn btn-danger btn-sm">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button (click)="showPopup()" class="float-right btn btn-bc">Ajouter</button>
   </div>
-  <div class="container">
-    <div class="tab-content">
-      <div id="myTable" class="tab-pane fade in active">
-        <table id="myTableUser" class="table table-hover table-condensed table-bordered table-fixedheader">
-          <thead>
-          <tr>
-              <th class="col-xs-3"><a>Nom</a></th>
-      
-              <th class="col-xs-3"><a>Email</a></th>
   
-              <th class="col-xs-3"><a>role</a></th>
-  
-            <th class="col-xs-6" colspan="2"></th>
-            
-          </tr>
-          </thead>
-          <tbody style="height:400px">
-          <tr *ngFor="let user of users">
-            <td class="col-xs-3">{{user.name}}</td>
-            <td class="col-xs-3">{{user.email}}</td>
-            <td class="col-xs-3">{{user.role}}</td>
-            <td  colspan="2"> 
-              <button (click)="getUserInfo(user.id)" class="float-right btn btn-primary btn-sm">Modifier</button>
-              <button (click)="getUserInfo(user.id)" class="float-right btn btn-danger btn-sm">Supprimer</button>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  
-  
-  
-  
-  <div *ngIf="userSelected" class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <form #f="ngForm" (ngSubmit)="updateUser(f.value,userSelected.id)">
-            <div class="form-group">
-              <label for="name">Nom</label>
+  <div *ngIf='isAdding' class='popup'>
+      <span class='close' (click)='isAdding = false'>x</span>
+      <div class='centered'>
+        <h3>Ajouter</h3>
+        <form #fadd="ngForm" (ngSubmit)="addUser(fadd.value)">
+          <div class="form-group">
+            <label for="name">Nom</label>
+            <input
+              ngModel
+              #name="ngModel"
+              name="name"
+              type="text"
+              class="form-control"
+              required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
               <input
-                [(ngModel)]='userSelected.name'
-                #name="ngModel"
-                name="name"
-                id="name"
-                type="text"
+                ngModel
+                #email="ngModel"
+                name="email"
+                type="email"
                 class="form-control"
                 required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <div class="input-group">
+          </div>
+          <div class="form-group">
+            <label for="password">Mot de passe</label>
+              <input
+                ngModel
+                #password="ngModel"
+                name="password"
+                type="password"
+                class="form-control"
+                required>
+          </div>
+          <div class="form-group">
+              <label for="password">Confirmer le mot de passe</label>
                 <input
-                 [(ngModel)]='userSelected.email'
-                  #email="ngModel"
-                  name="email"
-                  id="email"
-                  type="email"
+                  ngModel
+                  #passwordValid="ngModel"
+                  name="password_confirmation"
+                  type="password"
                   class="form-control"
                   required>
-              </div>
             </div>
-            <div class="form-group">
-              <label>Role</label>
-              <select name="role" id="role" class="form-control" [(ngModel)]='userSelected.role'>
-                <option value="Client">Client</option>
-                <option value="Admin">Admin</option>
-              </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Mettre à jour</button>
-          </form>
-          <div *ngIf='successPost' class="alert alert-success" role="alert">Utilisateur mis à jour !</div>
-        </div>
+          <div class="form-group">
+            <label>Role</label>
+            <select name="role" class="form-control" ngModel>
+              <option value="Client">Client</option>
+              <option value="Admin">Admin</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-bc">Ajouter</button>
+        </form>
       </div>
+  </div>
+  
+  <div *ngIf="userSelected" class='popup'>
+    <span class='close' (click)='userSelected = null'>x</span>
+    <div class='centered'>
+      <h3>Modification</h3>
+      <form #f="ngForm" (ngSubmit)="updateUser(f.value,userSelected.id)">
+        <div class="form-group">
+          <label for="name">Nom</label>
+          <input
+            [(ngModel)]='userSelected.name'
+            #name="ngModel"
+            name="name"
+            id="name"
+            type="text"
+            class="form-control"
+            required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <div class="form-group">
+            <input
+              [(ngModel)]='userSelected.email'
+              #email="ngModel"
+              name="email"
+              id="email"
+              type="email"
+              class="form-control"
+              required>
+          </div>
+        </div>
+        <div *ngIf="userSelected.id != userAuth.id" class="form-group">
+          <label>Role</label>
+          <select name="role" id="role" class="form-control" [(ngModel)]='userSelected.role'>
+            <option value="Client">Client</option>
+            <option value="Admin">Admin</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-bc">Mettre à jour</button>
+      </form>
     </div>
+  </div> 

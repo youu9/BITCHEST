@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {JwtHelper} from "angular2-jwt";
 import {UsersService} from "../services/users/users.service";
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',

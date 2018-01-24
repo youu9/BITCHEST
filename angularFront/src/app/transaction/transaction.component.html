@@ -1,87 +1,66 @@
-<div class="container">
-  <h1>Transaction</h1>
 
+<h1 class='page-header'>Transaction</h1>
 
-  <p>
-    Welcome {{ userAuth?.name}}
-  </p>
-</div>
+<ul class="nav nav-pills">
+  <li class="active"><a data-toggle="pill" href="#buy">Acheter</a></li>
+  <li><a data-toggle="pill" href="#sell">Vendre</a></li>
+</ul>
 
-<div class="container">
-  <ul class="nav nav-pills">
-    <li class="active"><a data-toggle="pill" href="#buy">Buy</a></li>
-    <li><a data-toggle="pill" href="#sell">Sell</a></li>
-  </ul>
-
-  <div class="tab-content">
-    <div id="buy" class="tab-pane fade in active">
-      <h3>Buy</h3>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-
-            <form #f="ngForm" (ngSubmit)="buy(f.value)">
-              <div class="form-group">
-                <label for="quantity">Quantity : </label>
-                <div class="input-group">
-                <input
-                  ngModel
-                  name="quantity"
-                  #quantity="ngModel"
-                  id="quantity"
-                  type="number"
-                  class="form-control"
-                  required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="currencyId">Currency</label>
-                <select
-                  ngModel
-                  #currencyId="ngModel"
-                  name="currencyId"
-                  id="currencyId"
-                  class="form-control"
-                  required>
-                  <option *ngFor="let currency of currencies" value="{{currency?.id}}">{{currency?.name}} {{currency?.price}} €</option>
-                </select>
-              </div>
-              <button type="submit" class="btn btn-primary">Buy</button>
-            </form>
-
-
-          </div>
-        </div>
+<div class="tab-content">
+  <div id="buy" class="tab-pane fade in active">
+    <h3>Acheter</h3>
+    <form id='buy-form' #f="ngForm" (ngSubmit)="buy(f.value)">
+      <div class="form-group">
+        <label for="quantity">Quantité</label>
+        <input type="number" id="quantity" name="quantity" [(ngModel)]='total.quantity' #quantity="ngModel" class="form-control" required>
       </div>
+      <div class="form-group">
+        <label for="currencyId">Crypto-monnaie</label>
+        <select
+          ngModel
+          #currencyId="ngModel"
+          name="currencyId"
+          id="currencyId"
+          class="form-control"
+          required>
+          <option *ngFor="let currency of currencies"  value="{{currency?.id}}">{{currency?.name}} {{currency?.price}} €</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-bc">Acheter</button>
+    </form>
+    <p *ngIf='total'>{{total.quantity * total.price}} €</p>
+    <div *ngIf='successBuy' class="alert alert-success" role="alert">Acheté !</div>
+  </div>
 
-
-
-    </div>
-    <div id="sell" class="tab-pane fade">
-      <h3>Sell</h3>
-      <table id="mySell" class="table table-hover table-condensed table-bordered table-fixedheader">
+  <div id="sell" class="tab-pane fade">
+    <h3>Vendre</h3>
+    <div class='table-responsive'>
+      <table id="myCurrencySold" class="table">
         <thead>
-        <tr>
-          <th class="col-xs-3"><a>Name</a>
-
-          </th>
-          <th class="col-xs-3">
-            <a >Symbol</a>
-          </th>
-
-          <th class="col-xs-6">
-            <a>Price</a>
-          </th>
-        </tr>
+          <tr>
+              <th>Date d'achat</th>
+              <th>Nom</th>
+              <th>Symbole</th>
+              <th>Quantité</th>
+              <th>Prix unitaire</th>
+              <th class='col-md-2'></th>
+          </tr>
         </thead>
-        <tbody style="height:400px">
-        <tr *ngFor="let currency of currencies">
-          <td class="col-xs-3">{{currency.name}}</td>
-          <td class="col-xs-3">{{currency.symbol}}</td>
-          <td class="col-xs-6">{{currency.today_quotation.rate}} €</td>
-        </tr>
+        <tbody>
+          <tr *ngFor="let buy of myBuy" routerLinkActive="active">
+            <td>{{buy.date}}</td>
+            <td><a (click)="goToDetails(buy.currency_id, buy.name)">{{buy.name}}</a></td>
+            <td>{{buy.symbol}}</td>
+            <td>{{buy.quantity}}</td>
+            <td>{{buy.rate}} € <span [ngClass]="buy.diff >= 0 ? 'positif':'negatif'" class='badge'>{{buy.diff >= 0 ? '+':''}}{{buy.diff}}</span></td>
+            <td>
+              <button type="button" (click)='sell(buy.id)' class="btn btn-bc">Vendre</button>
+            </td>
+          </tr>
         </tbody>
       </table>
-    </div>
+      </div>
+    <div *ngIf='successSell' class="alert alert-success" role="alert">Vendu !</div>
   </div>
 </div>
+

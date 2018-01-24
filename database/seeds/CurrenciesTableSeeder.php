@@ -31,52 +31,42 @@ class CurrenciesTableSeeder extends Seeder
         DB::table('currencies')->insert(array([
             'name' => 'Bitcoin',
             'symbol' => 'BTC',
-            'price' => getFirstCotation('Bitcoin'),
         ],
         [
             'name' => 'Ethereum',
             'symbol' => 'ETH',
-            'price' => getFirstCotation('Ethereum'),
         ],
         [
             'name' => 'Ripple',
             'symbol' => 'XRP',
-            'price' => getFirstCotation('Ripple'),
         ],
         [
             'name' => 'Bitcoin Cash',
             'symbol' => 'BCH',
-            'price' => getFirstCotation('Bitcoin Cash'),
         ],
         [
             'name' => 'Cardano',
             'symbol' => 'ADA',
-            'price' => getFirstCotation('Cardano'),
         ],
         [
             'name' => 'Litecoin',
             'symbol' => 'LTC',
-            'price' => getFirstCotation('Litecoin'),
         ],
         [
             'name' => 'NEM',
             'symbol' => 'XEM',
-            'price' => getFirstCotation('NEM'),
         ],
         [
             'name' => 'Stellar',
             'symbol' => 'XLM',
-            'price' => getFirstCotation('Stellar'),
         ],
         [
             'name' => 'IOTA',
             'symbol' => 'IOT',
-            'price' => getFirstCotation('IOTA'),
         ],
         [
             'name' => 'DASH',
             'symbol' => 'DASH',
-            'price' => getFirstCotation('DASH'),
         ]));
         $currencies = App\Currency::all();
 

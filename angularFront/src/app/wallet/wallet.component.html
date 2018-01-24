@@ -1,98 +1,82 @@
-<div class="container">
-  <h1>Wallet</h1>
+<h1 class='page-header'>Portefeuille</h1>
+<h2>Solde du compte : {{userWalletTotal}} €</h2>
 
 
-  <p>
-    Welcome {{ userAuth?.name}}
-  </p>
-  <p>Solde du compte : {{userWalletTotal}} €</p>
-</div>
-
-<div class="container">
   <ul class="nav nav-pills">
-    <li class="active"><a data-toggle="pill" href="#myBuy">Currency owned</a></li>
-    <li><a data-toggle="pill" href="#mySell">Currency sold</a></li>
+    <li class="active"><a data-toggle="pill" href="#myWallet">Mes crypto-monnaies</a></li>
+    <li><a data-toggle="pill" href="#myBuy">Historique des achats</a></li>
+    <li><a data-toggle="pill" href="#mySell">Historique des ventes</a></li>
   </ul>
   <div class="tab-content">
-    <div id="myBuy" class="tab-pane fade in active">
-      <h3>Currency owned</h3>
-      <table id="myCurrencyOwn" class="table table-hover table-condensed table-bordered table-fixedheader">
+    <div id="myWallet" class="tab-pane fade in active">
+      <h3>Mes crypto-monnaies</h3>
+      <table id="myCurrencyOwn" class="table">
           <thead>
-
           <tr>
-            <th class="col-xs-3"><a>Name</a>
-
-            </th>
-            <th class="col-xs-3">
-              <a >Symbol</a>
-            </th>
-
-            <th class="col-xs-3">
-              <a >Quantity</a>
-            </th>
-
-            <th class="col-xs-6">
-              <a>Price</a>
-            </th>
-            <th class="col-xs-6">
-            </th>
+            <th>Nom</th>
+            <th>Symbole</th>
+            <th>Quantité</th>
+            <th>Prix total</th>
           </tr>
           </thead>
-          <tbody style="height:400px">
-        <tbody style="height:400px">
-        <tr *ngFor="let currency of userWallet" routerLinkActive="active" (click)="goToDetails(currency.id, currency.name)">
-          <td class="col-xs-3">{{currency.name}}</td>
+          <tbody>
+        <tbody>
+        <tr *ngFor="let currency of userWallet" routerLinkActive="active">
+          <td class="col-xs-3"><a (click)="goToDetails(currency.id, currency.name)">{{currency.name}}</a></td>
           <td class="col-xs-3">{{currency.symbol}}</td>
           <td class="col-xs-3">{{currency.quantity}}</td>
-          <td class="col-xs-6">{{currency.price}} €</td>
-          <td>
-            <button (click)="getUserInfo(user.id)" class="float-right btn btn-danger btn-sm">Sell</button>
-          </td>
+          <td class="col-xs-6">{{currency.price}} € <span class='badge'>{{currency.diff}}</span></td>
         </tr>
         </tbody>
         </table>
     </div>
-    <div id="mySell" class="tab-pane fade">
-      <h3>Currency sold</h3>
-      <table id="myCurrencySold" class="table table-hover table-condensed table-bordered table-fixedheader">
+    <div id="myBuy" class="tab-pane fade">
+      <h3>Historique des achats</h3>
+      <table id="myCurrencySold" class="table table-hover">
         <thead>
-
         <tr>
-          <th class="col-xs-3"><a>Name</a>
-
-          </th>
-          <th class="col-xs-3">
-            <a >Symbol</a>
-          </th>
-
-          <th class="col-xs-3">
-            <a >Quantity</a>
-          </th>
-
-          <th class="col-xs-6">
-            <a>Price</a>
-          </th>
-          <th class="col-xs-6">
-            <a>Date</a>
-          </th>
-          <th class="col-xs-6">
-          </th>
+            <th>Date d'achat</th>
+            <th>Nom</th>
+            <th>Symbole</th>
+            <th>Quantité</th>
+            <th>Prix unitaire</th>
         </tr>
         </thead>
-        <tbody style="height:400px">
-        <tr *ngFor="let sell of mySell" routerLinkActive="active" (click)="goToDetails(currency.id, currency.name)">
-          <td class="col-xs-3">{{sell.name}}</td>
-          <td class="col-xs-3">{{sell.symbol}}</td>
-          <td class="col-xs-3">{{sell.quantity}}</td>
-          <td class="col-xs-3">{{sell.quantity}}</td>
-          <td class="col-xs-6">{{sell.price}} €</td>
-          <td>
-            <button (click)="getUserInfo(user.id)" class="float-right btn btn-danger btn-sm">Sell</button>
-          </td>
+        <tbody>
+        <tr *ngFor="let buy of myBuy" routerLinkActive="active">
+          <td>{{buy.date}}</td>
+          <td><a (click)="goToDetails(buy.currency_id, buy.name)">{{buy.name}}</a></td>
+          <td>{{buy.symbol}}</td>
+          <td>{{buy.quantity}}</td>
+          <td>{{buy.rate}} € <span [ngClass]="buy.diff >= 0 ? 'positif':'negatif'" class='badge'>{{buy.diff >= 0 ? '+':''}}{{buy.diff}}</span></td>
         </tr>
         </tbody>
       </table>
-
+      
     </div>
+
+    <div id="mySell" class="tab-pane fade">
+        <h3>Historique des ventes</h3>
+        <table id="myCurrencySold" class="table table-hover">
+          <thead>
+          <tr>
+              <th>Date d'achat</th>
+              <th>Nom</th>
+              <th>Symbole</th>
+              <th>Quantité</th>
+              <th>Prix unitaire</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let sell of mySell" routerLinkActive="active">
+            <td>{{sell.date}}</td>
+            <td><a (click)="goToDetails(sell.currency_id, sell.name)">{{sell.name}}</a></td>
+            <td>{{sell.symbol}}</td>
+            <td>{{sell.quantity}}</td>
+            <td>{{sell.rate}} €</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
   </div>
-</div>
+

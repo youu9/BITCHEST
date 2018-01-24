@@ -12,8 +12,9 @@ class CurrencyController extends Controller
 {
     public function index(){
         $currencies = Currency::all();
-        $date = new Carbon();
+        
         foreach($currencies as $currency){
+            $date = new Carbon();
             
             $currency->today_quotation = $currency->quotation($date->format('Y-m-d'))[0];
             

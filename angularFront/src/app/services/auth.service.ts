@@ -26,16 +26,18 @@ export class AuthService {
   login(credentials) {
     return this.http.post(environment.login, credentials)
       .map( (r: Response) => {
+        
+        
         let result = r.headers.toJSON();
         let body = JSON.parse(r['_body']);
         if ( result && result.authorization) {
           localStorage.setItem('token', result.authorization.toString());
           localStorage.setItem('id', body.user.id);
           localStorage.setItem('role', body.user.role);
-          console.log(localStorage.getItem('token'));
-          return true;
+          
+          return body;
         }
-        return false;
+        return body;
       });
   }
 

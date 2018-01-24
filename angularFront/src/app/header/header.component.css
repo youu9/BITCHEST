@@ -1,89 +1,22 @@
-/* .navbar-fixed-left {
-  width: 140px;
-  position: fixed;
-  border-radius: 0;
-  height: 100%;
-}
-
-.navbar-fixed-left .navbar-nav > li {
-  float: none;  
-  width: 139px;
-}
-
-.navbar-fixed-left + .container {
-  padding-left: 160px;
-}
 
 
-.navbar-fixed-left .navbar-nav > li > .dropdown-menu {
-  margin-top: -50px;
-  margin-left: 140px;
+
+.logo{
+  width: 100%;
+  max-width: 150px;
+  display: block;
+  margin: 0 auto;
 }
 
-.navbar-brand>img {
-  padding: 15px; 
-  width: 140px;
-  margin-top: -30px;
-  margin-left: -60px;
-} */
-.nav-item{
-  display:block;
-  width:100%;
+.nav-sidebar > .active > a, .nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus, .nav-sidebar > li > a:hover{
+  background-color: transparent;
+  color:#000; 
+  font-weight:bold;
 }
-.nav-item a{
+
+.nav-sidebar > li > a{
   color:#000;
 }
-.nav-item.active{
-  background-color:#f5f5f5;
+.nav-item{
+  cursor: pointer;
 }
-.logo{
-  width:100%;
-}
-.row-offcanvas {
-  height:100%;
-}
-
-body {
-  padding-top: 50px;
-}
-
-#sidebar {
-  width: inherit;
-  min-width: 220px;
-  max-width: 220px;
-  background-color:#f5f5f5;
-  float: left;
-  height:100%;
-  position:relative;
-  overflow-y:auto;
-  overflow-x:hidden;
-}
-
-  
-  /*
-   * off Canvas sidebar
-   * --------------------------------------------------
-   */
-   @media screen and (max-width: 768px) {
-    .row-offcanvas {
-      position: relative;
-      -webkit-transition: all 0.25s ease-out;
-      -moz-transition: all 0.25s ease-out;
-      transition: all 0.25s ease-out;
-      width:calc(100% + 220px);
-    }
-      
-    .row-offcanvas-left
-    {
-      left: -220px;
-    }
-  
-    .row-offcanvas-left.active {
-      left: 0;
-    }
-  
-    .sidebar-offcanvas {
-      position: absolute;
-      top: 0;
-    }
-  }

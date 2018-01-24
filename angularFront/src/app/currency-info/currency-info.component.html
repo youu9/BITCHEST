@@ -1,20 +1,33 @@
 
-<div class="container">
-  <h1>{{name}}</h1>
+<h1 class='page-header'>{{name}}</h1>
+
+<H2>Cours des 30 derniers jours</H2>
+<div style='display:block'>
+  <canvas class='chart-canvas' baseChart
+        [datasets]="lineChartData"
+        [labels]="lineChartLabels"
+        [legend]="lineChartLegend"
+        [colors]="lineChartColors"
+        [chartType]="lineChartType"
+        (chartHover)="chartHovered($event)">
+  </canvas>
 </div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div style="display: block">
-        <canvas baseChart width="200px" height="200px"
-                [datasets]="lineChartData"
-                [labels]="lineChartLabels"
-                [colors]="lineChartColors"
-                [chartType]="lineChartType"
-                (chartHover)="chartHovered($event)">
-        </canvas>
-      </div>
-    </div>
-  </div>
-</div>
+ 
+  <H2>Mes derniers achats</H2>
+  <table  id="myCurrencySold" class="table">
+    <thead>
+    <tr>
+        <th>Date d'achat</th>
+        <th>Quantité</th>
+        <th>Prix unitaire</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let transaction of currencyTransactions">
+      <td>{{transaction.date}}</td>
+      <td>{{transaction.quantity}}</td>
+      <td>{{transaction.rate}} € <span [ngClass]="transaction.diff >= 0 ? 'positif':'negatif'" class='badge'>{{transaction.diff}}</span></td>
+    </tr>
+    </tbody>
+  </table>

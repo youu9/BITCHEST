@@ -1,16 +1,22 @@
 <form class="form-signin" #userForm="ngForm" (ngSubmit)="attemptLogin()">
   <h2 class="form-signin-heading">
-    <img class='logo' src="../../assets/bitchest_logo.png" alt='' />
+    Bienvenue sur Bitchest
   </h2>
 
-  
-  <label for="email" class="sr-only">Email</label>
-  <input email type="email" id="email" name="email" [(ngModel)]="user.email" #email="ngModel" class="form-control" placeholder="email" required autofocus>
-  <div [hidden]="email.valid || email.untouched"class="alert alert-danger">L'email est incorrect</div>
+  <div class="form-group">
+    <label for="email" class="sr-only">Email</label>
+    <input email type="email" id="email" name="email" [(ngModel)]="user.email" #email="ngModel" class="form-control" placeholder="email" required autofocus>
+  </div>
 
-  <label for="password" class="sr-only">Mot de passe</label>
-  <input type="password" id="password" name="password" [(ngModel)]="user.password" #password="ngModel" class="form-control" placeholder="password" required>
-  <div [hidden]="password.pristine || password.valid"class="alert alert-danger">Le champs mot de passe est requis</div>
-
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
+  <div class="form-group">
+    <label for="password" class="sr-only">Mot de passe</label>
+    <input type="password" id="password" name="password" [(ngModel)]="user.password" #password="ngModel" class="form-control" placeholder="password" required>
+  </div>  
+  <button class="btn btn-primary btn-bc" type="submit">Se connecter</button>
 </form>
+<div class='msg-form'>
+  <div [hidden]="email.valid || email.untouched"class="alert alert-danger">L'email est incorrect</div>
+  <div [hidden]="password.pristine || password.valid"class="alert alert-danger">Le champs mot de passe est requis</div>
+  <div [hidden]="!invalidLogin"class="alert alert-danger">Les identifiants sont incorrects. Veuillez reéssayer </div>
+
+</div>

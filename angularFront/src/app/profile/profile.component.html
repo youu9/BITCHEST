@@ -1,44 +1,52 @@
-<div id="userInfo">
-    <h2>Profil information</h2>
-    <div *ngIf="userAuth" class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <form #f="ngForm" (ngSubmit)="updateUser(f.value)">
-            <div class="form-group">
-              <label for="name">Nom</label>
+
+<h1 class='page-header'>Profil information</h1>
+<div *ngIf="userAuth">
+      <form #f="ngForm" (ngSubmit)="updateUser(f.value)">
+        <div class="form-group">
+          <label for="name">Nom</label>
+          <input
+            [(ngModel)]='userAuth.name'
+            #name="ngModel"
+            name="name"
+            id="name"
+            type="text"
+            class="form-control"
+            required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            [(ngModel)]='userAuth.email'
+            #email="ngModel"
+            name="email"
+            id="email"
+            type="email"
+            class="form-control"
+            required>
+        </div>
+        <div class="form-group">
+            <label for="password">Mot de passe</label>
               <input
-                [(ngModel)]='userAuth.name'
-                #name="ngModel"
-                name="name"
-                id="name"
-                type="text"
+                [(ngModel)]='userAuth.password'
+                #password="ngModel"
+                name="password"
+                type="password"
                 class="form-control"
                 required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <div class="input-group">
+          </div>
+          <div class="form-group">
+              <label for="password">Confirmer le mot de passe</label>
                 <input
-                 [(ngModel)]='userAuth.email'
-                  #email="ngModel"
-                  name="email"
-                  id="email"
-                  type="email"
+                  [(ngModel)]='userAuth.password_confirmation'
+                  #passwordValid="ngModel"
+                  name="password_confirmation"
+                  type="password"
                   class="form-control"
                   required>
-              </div>
             </div>
-            <div class="form-group">
-              <label>Role</label>
-              <select name="role" id="role" class="form-control" [(ngModel)]='userAuth.role'>
-                <option value="Client">Client</option>
-                <option value="Admin">Admin</option>
-              </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Mettre à jour</button>
-          </form>
-          <div *ngIf='successPost' class="alert alert-success" role="alert">Utilisateur mis à jour !</div>
-        </div>
-      </div>
-    </div>
+        <button type="submit" class="btn btn-bc">Mettre à jour</button>
+      </form>
+</div>
+<div class='msg-form'>
+  <div *ngIf='successPost' class="alert alert-success" role="alert">Utilisateur mis à jour !</div>
 </div>

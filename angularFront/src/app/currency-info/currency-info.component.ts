@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {UsersService} from "../services/users/users.service";
+import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
   selector: 'app-currency-info',
@@ -8,13 +9,14 @@ import {UsersService} from "../services/users/users.service";
   styleUrls: ['./currency-info.component.css']
 })
 export class CurrencyInfoComponent implements OnInit {
-
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective;
   id: number;
   name: string;
   sub: any;
   currencyInfo: any = [];
   currencyTransactions:any [];
   currencyQuotations:any [];
+  
 
   quotations= [];
   date= [];
@@ -24,6 +26,7 @@ export class CurrencyInfoComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log(this.currencyTransactions);
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id']; // (+) converts string 'id' to a number
       this.name = params['name'];
@@ -40,14 +43,17 @@ export class CurrencyInfoComponent implements OnInit {
 
   }
 
+  
+
   initChart(){
     for(let item of this.currencyInfo.quotations){
       this.quotations.push(item.rate);
       this.date.push(item.date);
-      this.quotations.reverse();
-      this.date.reverse();
     }
-    console.log(this.date);
+    this.quotations.reverse();
+    this.date.reverse();
+    this.chart.chart.update();
+    
   }
 
   // lineChart
@@ -57,35 +63,19 @@ export class CurrencyInfoComponent implements OnInit {
   public lineChartLabels:Array<any> = this.date;
 
   public lineChartOptions:any = {
-    responsive: true
+    responsive: true,
   };
   public lineChartColors:Array<any> = [
     { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
+      backgroundColor: 'rgba(1,255,25,0.2)',
+      borderColor: 'rgba(1,255,25,1)',
+      pointBackgroundColor: 'rgba(1,255,25,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+      pointHoverBorderColor: 'rgba(1,255,25,0.8)'
     },
-    { // dark grey
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
-    },
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    }
   ];
-  public lineChartLegend:boolean = true;
+  public lineChartLegend:boolean = false;
   public lineChartType:string = 'line';
 
   public chartHovered(e:any):void {

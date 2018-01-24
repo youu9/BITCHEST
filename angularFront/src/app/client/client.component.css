@@ -1,3 +1,39 @@
 .alert{
     margin-top:30px;
 }
+
+.popup{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:rgba(0,0,0,0.9);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+h3,label{
+    color:#fff;
+}
+h3{
+    text-align: center;
+}
+.centered{
+    width:100%;
+}
+.close{
+    position:absolute;
+    top: 15px;
+    right: 19px;
+    opacity: 0.9;
+    color: #fff;
+    cursor: pointer;
+}
+.no-border{
+    border: 0;
+}
+.table tr td{
+    vertical-align: middle;
+}

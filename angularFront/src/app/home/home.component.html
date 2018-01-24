@@ -1,14 +1,14 @@
-<div class="container">
+  <h1 class="page-header">Tableau de bord</h1>
+  <h2>Cours actuel</h2>
 
-  <h2>Dashboard</h2>
-
-  <h3>Cours actuel</h3>
-  <ul class="list-currency nav nav-pills" role="tablist">
-      <li *ngFor="let currency of currencies" class="list-group-item">
-        {{currency.today_quotation.rate}} €
-        <span>{{currency.today_quotation.diff}}</span>
-        {{ currency.symbol }}
-        {{ currency.name }}
+  <ul class="list-currency" role="tablist">
+      <li *ngFor="let currency of currencies">
+        <div (click)="goToDetails(currency.id, currency.name)">
+          <p class='rate'>{{currency.today_quotation.rate}} € <span [ngClass]="currency.today_quotation.diff >= 0 ? 'positif':'negatif'" class='badge'>{{currency.today_quotation.diff >= 0 ? '+':''}}{{currency.today_quotation.diff}}</span></p>
+          <img src="../assets/currencies/{{currency.id}}.png" alt="{{currency.name}}">
+          <p>{{ currency.symbol }}</p>
+          <p>{{ currency.name }}</p>
+        </div>
       </li>
     </ul>
-</div>
+

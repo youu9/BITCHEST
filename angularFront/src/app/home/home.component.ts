@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {JwtHelper} from "angular2-jwt";
 import {UsersService} from "../services/users/users.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,8 @@ export class HomeComponent implements OnInit {
    *@version 1.0*/
   constructor(
     public authService: AuthService,
-    private userService: UsersService
+    private userService: UsersService,
+    private route: Router
   ) { }
 
   ngOnInit() {
@@ -30,6 +32,8 @@ export class HomeComponent implements OnInit {
       .subscribe( currencies => this.currencies = currencies);
    //console.log(new JwtHelper().decodeToken(localStorage.getItem('token')))
   }
-
+  goToDetails(id, name){
+    this.route.navigate(['currency/info', id, name]);
+  }
 
 }

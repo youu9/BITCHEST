@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UsersService} from "../services/users/users.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-transaction',
@@ -10,9 +11,16 @@ export class TransactionComponent implements OnInit {
   userAuth:any[];
   userId: any;
   currencies: any[];
-  res;
+  myBuy:any [];
+  total = {
+    'price': '',
+    'quantity':'',
+  }
+  successSell : boolean;
+  successBuy: boolean;
 
-  constructor(private userService: UsersService) { }
+  constructor(private userService: UsersService, private route: Router) {
+   }
 
   ngOnInit() {
 
@@ -24,18 +32,41 @@ export class TransactionComponent implements OnInit {
     this.userService.getCurrencies()
       .subscribe(currencies => this.currencies = currencies);
 
+    this.userService.myBuy()
+    .subscribe(myBuy => this.myBuy = myBuy);
+  }
+
+  addPrice(price){
+    this.total.price = price;
   }
 
   buy(items){
-    console.log(items);
     this.userService.buy(items)
-      .subscribe( res => this.res = res );
+      .subscribe((response: Response) => {
+          this.successBuy = true;
+      });
   }
 
   sell(id){
-    console.log(id);
     this.userService.sell(id)
-      .subscribe(res => this.res = res);
+      .subscribe((response: Response) => {
+        let res:any = response;
+        if(res.success){
+
+          for (var _i = 0; _i < this.myBuy.length; _i++) {
+            if(this.myBuy[_i].id === id){
+              this.myBuy.splice(_i, 1);
+              break;
+            }
+          }
+          
+          this.successSell = true;
+        }
+      });
+  }
+  
+  goToDetails(id, name){
+    this.route.navigate(['currency/info', id, name]);
   }
 
 }

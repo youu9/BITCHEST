@@ -24,10 +24,13 @@ export class HeaderComponent implements OnInit {
     this.MenuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND);
     this.BrandMenu = ROUTES.filter(menuItem => menuItem.menuType === MenuType.BRAND)[0];
 
-    this.userService.getUserWallet()
+    if(this.authService.isClient()){
+      this.userService.getUserWallet()
       .subscribe(userWallet => {
         this.userWalletTotal = userWallet.wallet.total;
       });
+    }
+    
 
   }
 

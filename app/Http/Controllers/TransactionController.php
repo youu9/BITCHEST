@@ -30,7 +30,7 @@ class TransactionController extends Controller
         $user = JWTAuth::parseToken()->authenticate();
 
         $transactions = $user->getTransactionByCurrencyId($id);
-
+        
         return response()->json( $transactions );
     }
     public function all(Request $request){
@@ -53,11 +53,24 @@ class TransactionController extends Controller
         $transactions =  DB::table('transactions')
         ->join('currencies', 'currencies.id', '=', 'transactions.currency_id')
         ->join('users', 'users.id', '=', 'transactions.user_id')
-        ->select("currencies.*", "transactions.*")
+        ->join('quotations', 'quotations.id', '=', 'transactions.quotation_id')
+        ->select("currencies.*", "transactions.*","quotations.rate")
         ->where('transactions.state', '=', $request->state)
         ->where('users.id', '=', $user->id)
         ->get();
 
+        
+        $transactions = $transactions->all();
+        
+        $date = new Carbon();
+        
+        
+        foreach($transactions as $transaction){
+            
+            $currency = Currency::find($transaction->currency_id);
+            $quotationToday = $currency->quotation($date->format('Y-m-d'));
+            $transaction->diff = $quotationToday[0]->rate - $transaction->rate;
+        }
         return response()->json( $transactions );
     }
    

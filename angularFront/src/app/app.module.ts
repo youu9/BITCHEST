@@ -28,26 +28,29 @@ import { ProfileComponent } from './profile/profile.component';
 import { ClientComponent } from './client/client.component';
 
 const appRoutes: Routes = [
-  {path: 'dashboard', component: HomeComponent,
+  {
+    path: 'dashboard', component: HomeComponent,
     canActivate: [AuthGuard]//AdminAuthGuard
   },
-  {path: 'profile', component: ProfileComponent,
+  {
+    path: 'profile', component: ProfileComponent,
     canActivate: [AuthGuard]
   },
-  {path: 'client', component: ClientComponent,
+  {
+    path: 'client', component: ClientComponent,
     canActivate: [AuthGuard, AdminAuthGuard]
   },
-  {path: 'admin', component: AdminComponent,
-    canActivate: [AuthGuard, AdminAuthGuard
-    ]
-  },{
+  {
+    path: 'admin', component: AdminComponent,
+    canActivate: [AuthGuard, AdminAuthGuard]
+  },
+  {
    path: 'currency/info/:id/:name', component: CurrencyInfoComponent,
+   canActivate: [AuthGuard, ClientAuthGuard]
   },
-  {path: 'admin1', component: AdminComponent,
-    canActivate: [AuthGuard, AdminAuthGuard
-    ]
-  },
+  
   {path: 'login', component: LoginComponent},
+
   {path: 'wallet', component: WalletComponent,
     canActivate: [AuthGuard, ClientAuthGuard]
   },
