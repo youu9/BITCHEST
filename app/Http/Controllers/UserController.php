@@ -11,10 +11,18 @@ use Illuminate\Validation\Rule;
 use App\Http\Requests\StoreUserRequest;
 use JWTAuth;
 use DB;
+/**
+ * @resource User
+ *
+ * user endpoint 
+ * 
+ */
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Users
+     * 
+     * Return a list of users
      *
      * @return \Illuminate\Http\Response
      */
@@ -27,7 +35,9 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store
+     * 
+     * Add a user into database
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -64,7 +74,9 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * User 
+     * 
+     * Return a specific user
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -74,19 +86,11 @@ class UserController extends Controller
         return response()->json(User::find($id));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
-     * Update the specified resource in storage.
+     * Update
+     * 
+     * Update a user
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -137,7 +141,9 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete
+     * 
+     * Delete a user
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -148,5 +154,19 @@ class UserController extends Controller
         $user->delete();
         
         return response()->json(['success'=> true, 'message'=> 'Utilisateur supprimé !'])->header('Content-Type', 'application/json');
+    }
+
+    /**
+     * Wallet
+     * 
+     * return the wallet of an user
+     * 
+     * @param  string  token
+     * @return \Illuminate\Http\Response
+     */
+    public function wallet(){
+        $user = JWTAuth::parseToken()->authenticate();
+
+        return response()->json(['success'=> true, 'wallet'=> $user->getWallet($user->id)]);
     }
 }

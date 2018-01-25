@@ -16,13 +16,13 @@
 
 
           <li class="nav-item" routerLinkActive="active">
-            <a class="nav-item nav-link" routerLink="/profile" routerLinkActive="active">Profile</a>
+            <a class="nav-item nav-link" routerLink="/profile" routerLinkActive="active">Profil</a>
           </li>
           <li *ngIf="authService.isLoggedIn()" class="nav-item">
             <a class="nav-item nav-link" (click)="authService.logout()">Deconnexion</a>
           </li>
     </ul>
   
-
+    <span class='user-wallet' *ngIf='userService.walletSold'>Solde : {{userService.walletSold}} €</span>
             
   

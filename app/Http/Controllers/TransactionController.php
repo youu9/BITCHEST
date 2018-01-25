@@ -10,9 +10,15 @@ use Carbon\Carbon;
 use App\Quotation;
 use Validator;
 use DB;
-
+/**
+ * @resource Transaction
+ *
+ * transaction endpoint 
+ * 
+ */
 class TransactionController extends Controller
 {
+    
     public function __construct(){
         $user = JWTAuth::parseToken()->authenticate();
 
@@ -20,12 +26,14 @@ class TransactionController extends Controller
             return response()->json(['success'=> false, 'message'=> 'Vous êtes Admin']);
         }
     }
-    public function wallet(){
-        $user = JWTAuth::parseToken()->authenticate();
-
-        return response()->json(['success'=> true, 'wallet'=> $user->getWallet($user->id)]);
-    }
-
+    
+    /**
+     * List (Currency)
+     * 
+     * Return all transactions of an users by currency
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function list($id){
         $user = JWTAuth::parseToken()->authenticate();
 
@@ -33,6 +41,14 @@ class TransactionController extends Controller
         
         return response()->json( $transactions );
     }
+
+    /**
+     * List (Own or Sold)
+     * 
+     * Return all transactions of an users by state 'own' or 'sold'
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function all(Request $request){
         $user = JWTAuth::parseToken()->authenticate();
         $rules = [
@@ -74,6 +90,13 @@ class TransactionController extends Controller
         return response()->json( $transactions );
     }
    
+     /**
+     * Sell
+     * 
+     * Update a transaction in state 'sold'
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function sell(Request $request, $id){
         $transaction = Transaction::findOrFail($id);
         if($transaction->state != 'sold'){
@@ -87,6 +110,13 @@ class TransactionController extends Controller
         
     }
 
+    /**
+     * Buy
+     * 
+     * Create a transaction in state 'own'
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function buy(Request $request, $id){
         $user = JWTAuth::parseToken()->authenticate();
         

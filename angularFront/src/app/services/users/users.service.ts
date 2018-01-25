@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import {Http, Headers} from "@angular/http";
 import {Router} from "@angular/router";
-
+import { AuthService } from '../auth.service';
 @Injectable()
-export class UsersService {
+export class UsersService{
 
   private headers;
   private option;
   private token;
+  public walletSold;
 
   /**
    * Constructor recupère le token en localStorage et lui ajoute la string 'Bearer' pour le mettre
@@ -19,15 +20,25 @@ export class UsersService {
    * @version 1.0
    * */
   constructor(private http: Http,
-              private route: Router) {
-    this.token = localStorage.getItem('token');
-    this.headers = new Headers({
-      'Content-Type': 'application/json',
-      Authorization: this.token
-    });
-    this.option = {headers: this.headers};
+              private route: Router,
+              private authService: AuthService) {
+    if(localStorage.getItem('token')){
+      this.token = localStorage.getItem('token');
+      this.headers = new Headers({
+        'Content-Type': 'application/json',
+        Authorization: this.token
+      });
+      this.option = {headers: this.headers};
+    }else{
+      this.token = this.authService.token;
+      this.headers = new Headers({
+        'Content-Type': 'application/json',
+        Authorization: this.token
+      });
+      this.option = {headers: this.headers};
+    }
+    
   }
-
 
   /**
    * Envoie la requête GET a l'API (en format JSON) et y ajoute (this.option) pour l'auth.

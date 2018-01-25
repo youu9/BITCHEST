@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthService {
+  token : string;
   /**
    * Service d'auth du user.
    * Envoi credentials vers Api check LDAP
@@ -31,10 +32,11 @@ export class AuthService {
         let result = r.headers.toJSON();
         let body = JSON.parse(r['_body']);
         if ( result && result.authorization) {
+          
           localStorage.setItem('token', result.authorization.toString());
           localStorage.setItem('id', body.user.id);
           localStorage.setItem('role', body.user.role);
-          
+          this.token =  result.authorization.toString();
           return body;
         }
         return body;
