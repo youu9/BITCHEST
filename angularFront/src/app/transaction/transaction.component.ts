@@ -24,7 +24,8 @@ export class TransactionComponent implements OnInit {
   successBuy: boolean;
   errorBuy : boolean;
   userWalletTotal: any;
-  
+  sellDataId:number;
+  sellDataName:number;
   
 
   constructor(private userService: UsersService, public authService:AuthService, private route: Router) {
@@ -63,6 +64,20 @@ export class TransactionComponent implements OnInit {
     console.log(this.total);
   }
 
+  refreshSell(){
+    this.userService.myBuy()
+    .subscribe(myBuy => this.myBuy = myBuy);
+  }
+
+  addDataSell(id, name){
+    this.sellDataId = id;
+    this.sellDataName = name;
+  }
+  abord(){
+    this.sellDataId = null;
+    this.sellDataName = null;
+  }
+
   buy(items){
     if( (parseInt(this.total.price) * parseInt(this.total.quantity)) < this.userWalletTotal){
       this.userService.buy(items)
@@ -72,6 +87,7 @@ export class TransactionComponent implements OnInit {
               'price': '',
               'quantity':'',
             }
+            
             if(this.authService.isClient()){
               this.userService.getUserWallet()
               .subscribe(userWallet => {
@@ -105,6 +121,7 @@ export class TransactionComponent implements OnInit {
               this.userWalletTotal = this.userService.walletSold;
             });
           }
+          this.abord();
           this.successSell = true;
         }
       });

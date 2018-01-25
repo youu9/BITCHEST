@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import {Http, Headers} from "@angular/http";
 import {Router} from "@angular/router";
-
+import { AuthService } from '../auth.service';
 @Injectable()
 export class UsersService{
 
@@ -20,14 +20,24 @@ export class UsersService{
    * @version 1.0
    * */
   constructor(private http: Http,
-              private route: Router) {
+              private route: Router,
+              private authService: AuthService) {
+    if(localStorage.getItem('token')){
+      this.token = localStorage.getItem('token');
+      this.headers = new Headers({
+        'Content-Type': 'application/json',
+        Authorization: this.token
+      });
+      this.option = {headers: this.headers};
+    }else{
+      this.token = this.authService.token;
+      this.headers = new Headers({
+        'Content-Type': 'application/json',
+        Authorization: this.token
+      });
+      this.option = {headers: this.headers};
+    }
     
-    this.token = localStorage.getItem('token');
-    this.headers = new Headers({
-      'Content-Type': 'application/json',
-      Authorization: this.token
-    });
-    this.option = {headers: this.headers};
   }
 
   /**

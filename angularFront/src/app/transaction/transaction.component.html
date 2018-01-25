@@ -3,7 +3,7 @@
 
 <ul class="nav nav-pills">
   <li class="active"><a data-toggle="pill" href="#buy">Acheter</a></li>
-  <li><a data-toggle="pill" href="#sell">Vendre</a></li>
+  <li><a data-toggle="pill" (click)='refreshSell()' href="#sell">Vendre</a></li>
 </ul>
 
 <div class="tab-content">
@@ -57,11 +57,20 @@
             <td>{{buy.quantity}}</td>
             <td>{{buy.rate}} € <span [ngClass]="buy.diff >= 0 ? 'positif':'negatif'" class='badge'>{{buy.diff >= 0 ? '+':''}}{{buy.diff}}</span></td>
             <td>
-              <button type="button" (click)='sell(buy.id)' class="btn btn-bc">Vendre</button>
+              <button type="button" (click)='addDataSell(buy.id, buy.name)' class="btn btn-bc">Vendre</button>
             </td>
           </tr>
         </tbody>
       </table>
+      </div>
+      <div *ngIf='sellDataId && sellDataName' class='confirmation-popup'>
+        <div>
+          Voulez vous vendre la crypto monnaie {{sellDataName}} ?
+          <div style='margin-top:15px'>
+            <button style='border:none;' (click)='abord()' class='btn btn-danger'>Annuler</button>
+            <button (click)='sell(sellDataId)' class='btn btn-bc'>Confirmer</button>
+          </div>
+        </div>
       </div>
     <div *ngIf='successSell' class="alert alert-success" role="alert">Vendu !</div>
   </div>

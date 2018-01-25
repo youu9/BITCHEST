@@ -51,7 +51,9 @@ export class LoginComponent {
         
         if (result.success && localStorage.getItem('token')) {
           let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-          this.router.navigate([returnUrl || '/']);
+           //this.router.navigate([returnUrl || '/']);
+           this.router.navigateByUrl('/');
+           window.location.reload();
         }
         else
           this.invalidLogin = true;
