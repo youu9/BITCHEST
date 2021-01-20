@@ -34,7 +34,7 @@
     "ngx-filter-pipe": "^1.0.1",
     "ngx-order-pipe": "^1.1.2",
     "rxjs": "^5.5.6",
-    "socket.io": "^2.0.4",
+    "socket.io": "^2.4.0",
     "zone.js": "^0.8.20"
   },
   "devDependencies": {
